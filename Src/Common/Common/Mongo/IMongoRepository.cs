@@ -1,6 +1,6 @@
 using Sport.Common.Core;
 
-namespace Sport.Common.Mango;
+namespace Sport.Common.Mongo;
 
 /// <summary>
 /// A specialized repository interface for MongoDB.

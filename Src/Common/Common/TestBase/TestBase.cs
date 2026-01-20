@@ -1,3 +1,37 @@
+using System.Net;
+using System.Security.Claims;
+using Ardalis.GuardClauses;
+using Sport.Common.EFCore;
+using Sport.Common.Mongo;
+using Sport.Common.PersistMessageProcessor;
+using Sport.Common.Web;
+using Duende.IdentityServer.EntityFramework.Entities;
+using EasyNetQ.Management.Client;
+using Grpc.Net.Client;
+using MassTransit;
+using MassTransit.Testing;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
+using NSubstitute;
+using Respawn;
+using WebMotions.Fake.Authentication.JwtBearer;
+using Xunit;
+using Xunit.Abstractions;
+using Testcontainers.PostgreSql;
+using Testcontainers.RabbitMq;
+using Testcontainers.MongoDb;
+using Testcontainers.EventStoreDb;
+using Sport.Common.Core;
+using System.Globalization;
+using Npgsql;
 
 namespace Sport.Common.TestBase;
 

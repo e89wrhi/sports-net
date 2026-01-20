@@ -12,7 +12,7 @@ public static class Extensions
         var validationResult = await validator.ValidateAsync(request);
         if (!validationResult.IsValid)
         {
-            throw new Exception.ValidationException(validationResult.Errors?.First()?.ErrorMessage);
+            throw new BaseExceptions.ValidationException(validationResult.Errors?.First()?.ErrorMessage);
         }
     }
 }

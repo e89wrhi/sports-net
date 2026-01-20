@@ -1,5 +1,7 @@
+using Grpc.Core;
+using Grpc.Core.Interceptors;
 
-namespace Sport.Common.Exception;
+namespace Sport.Common.BaseExceptions;
 
 public class GrpcExceptionInterceptor : Interceptor
 {

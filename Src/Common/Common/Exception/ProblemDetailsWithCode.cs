@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
-namespace Sport.Common.Exception;
+namespace Sport.Common.BaseExceptions;
 
 public class ProblemDetailsWithCode : ProblemDetails
 {

@@ -1,7 +1,7 @@
 
 using System.Net;
 
-namespace Sport.Common.Exception;
+namespace Sport.Common.BaseExceptions;
 
 /// <summary>
 /// Thrown when the client sends a request that is syntactically incorrect or violates simple business rules.

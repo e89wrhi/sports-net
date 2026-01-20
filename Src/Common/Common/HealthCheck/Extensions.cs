@@ -8,7 +8,7 @@ using MongoDB.Driver;
 using RabbitMQ.Client;
 using Sport.Common.EFCore;
 using Sport.Common.EventStoreDB;
-using Sport.Common.Mango;
+using Sport.Common.Mongo;
 using Sport.Common.MassTransit;
 using Sport.Common.Web;
 

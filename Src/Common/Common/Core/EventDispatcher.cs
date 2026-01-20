@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sport.Common.PersistMessageProcessor;
+using Sport.Common.Web;
 using System.Security.Claims;
 
 namespace Sport.Common.Core;

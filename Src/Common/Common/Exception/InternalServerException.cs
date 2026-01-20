@@ -1,5 +1,8 @@
 
-namespace Sport.Common.Exception;
+using System.Globalization;
+using System.Net;
+
+namespace Sport.Common.BaseExceptions;
 
 /// <summary>
 /// A wrapper for unexpected errors that happen on the server side.

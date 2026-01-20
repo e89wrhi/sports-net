@@ -1,5 +1,7 @@
 
-namespace Sport.Common.Exception;
+using System.Net;
+
+namespace Sport.Common.BaseExceptions;
 
 /// <summary>
 /// Thrown when input validation fails (e.g., missing required fields or invalid formats).

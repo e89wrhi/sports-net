@@ -1,5 +1,7 @@
 
-namespace Sport.Common.Exception;
+using System.Net;
+
+namespace Sport.Common.BaseExceptions;
 
 /// <summary>
 /// Thrown when a requested resource (like a specific Match or User) does not exist in the system.

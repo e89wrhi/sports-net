@@ -3,6 +3,8 @@ using Duende.IdentityServer.EntityFramework.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Sport.Common.Constant;
+using Sport.Common.Web;
 
 namespace Sport.Common.Jwt;
 

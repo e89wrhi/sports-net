@@ -1,5 +1,5 @@
 
-namespace Sport.Common.Exception;
+namespace Sport.Common.BaseExceptions;
 
 public class AggregateNotFoundException : System.Exception
 {

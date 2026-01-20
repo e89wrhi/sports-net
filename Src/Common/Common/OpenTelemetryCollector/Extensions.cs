@@ -15,6 +15,7 @@ using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Sport.Common.Web;
 using System.Diagnostics;
 using System.Reflection;
 

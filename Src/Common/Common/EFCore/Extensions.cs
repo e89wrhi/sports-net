@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sport.Common.Core;
+using Sport.Common.Web;
 using System.Linq.Expressions;
 
 namespace Sport.Common.EFCore;

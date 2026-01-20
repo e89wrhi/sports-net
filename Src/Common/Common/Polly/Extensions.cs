@@ -1,8 +1,9 @@
-
-using Grpc.Core.Logging;
-using Polly;
+using Microsoft.Extensions.Logging;
 
 namespace Sport.Common.Polly;
+
+using global::Polly;
+using Exception = System.Exception;
 
 /// <summary>
 /// Infrastructure extensions for making our system more resilient using Polly.

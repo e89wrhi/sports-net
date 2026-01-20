@@ -1,5 +1,3 @@
-
-using MassTransit.Serialization;
 using Sport.Common.Core;
 using System.Linq.Expressions;
 

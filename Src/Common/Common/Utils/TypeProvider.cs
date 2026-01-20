@@ -11,6 +11,9 @@ namespace Sport.Common.Utils;
 /// </summary>
 public static class TypeProvider
 {
+    /// <summary>
+    /// Checks if a type is a C# record.
+    /// </summary>
     private static bool IsRecord(this Type objectType)
     {
         return objectType.GetMethod("<Clone>$") != null ||
@@ -19,6 +22,9 @@ public static class TypeProvider
                .GetMethod?.GetCustomAttribute(typeof(CompilerGeneratedAttribute)) != null;
     }
 
+    /// <summary>
+    /// Searches for a type in any assembly referenced by the entry assembly.
+    /// </summary>
     public static Type? GetTypeFromAnyReferencingAssembly(string typeName)
     {
         var referencedAssemblies = Assembly.GetEntryAssembly()?
@@ -34,6 +40,9 @@ public static class TypeProvider
             .FirstOrDefault();
     }
 
+    /// <summary>
+    /// Searches for a type in all currently loaded assemblies in the AppDomain.
+    /// </summary>
     public static Type? GetFirstMatchingTypeFromCurrentDomainAssembly(string typeName)
     {
         var result = AppDomain.CurrentDomain.GetAssemblies()
@@ -43,6 +52,9 @@ public static class TypeProvider
         return result;
     }
 
+    /// <summary>
+    /// Recursively finds all assemblies referenced by the root assembly.
+    /// </summary>
     public static IReadOnlyList<Assembly> GetReferencedAssemblies(Assembly? rootAssembly)
     {
         var visited = new HashSet<string>();
@@ -65,8 +77,8 @@ public static class TypeProvider
             {
                 if (!visited.Contains(reference.FullName))
                 {
-                    // Load will add assembly into the application domain of the caller. loading assemblies explicitly to AppDomain, because assemblies are loaded lazily
-                    // https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly.load
+                    // Load will add assembly into the application domain of the caller.
+                    // We load them explicitly because assemblies are often loaded lazily.
                     queue.Enqueue(Assembly.Load(reference));
                     visited.Add(reference.FullName);
                 }
@@ -76,6 +88,9 @@ public static class TypeProvider
         return listResult.Distinct().ToList().AsReadOnly();
     }
 
+    /// <summary>
+    /// Finds all assemblies marked as Application Parts starting with the same root namespace.
+    /// </summary>
     public static IReadOnlyList<Assembly> GetApplicationPartAssemblies(Assembly rootAssembly)
     {
         var rootNamespace = rootAssembly.GetName().Name!.Split('.').First();

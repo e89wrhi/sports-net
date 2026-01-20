@@ -1,5 +1,6 @@
+using System.Net;
 
-namespace Sport.Common.Exception;
+namespace Sport.Common.BaseExceptions;
 
 /// <summary>
 /// Thrown when a business rule is violated within the Domain layer.

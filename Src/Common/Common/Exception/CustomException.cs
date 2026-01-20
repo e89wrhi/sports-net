@@ -1,5 +1,7 @@
 
-namespace Sport.Common.Exception;
+using System.Net;
+
+namespace Sport.Common.BaseExceptions;
 
 /// <summary>
 /// The base class for all application-specific exceptions.

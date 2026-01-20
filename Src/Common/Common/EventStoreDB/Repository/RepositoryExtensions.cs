@@ -1,4 +1,4 @@
-using Sport.Common.Exception;
+using Sport.Common.BaseExceptions;
 
 namespace Sport.Common.EventStoreDB;
 

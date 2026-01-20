@@ -2,7 +2,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
 using System.Reflection;
 
-namespace Sport.Common.Mango;
+namespace Sport.Common.Mongo;
 
 /// <summary>
 /// A convention that map all read only properties for which a matching constructor is found.

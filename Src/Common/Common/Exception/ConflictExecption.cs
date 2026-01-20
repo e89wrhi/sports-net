@@ -1,7 +1,7 @@
 
 using System.Net;
 
-namespace Sport.Common.Exception;
+namespace Sport.Common.BaseExceptions;
 
 /// <summary>
 /// Thrown when a request conflicts with the current state of the server (e.g., trying to create a resource that already exists).

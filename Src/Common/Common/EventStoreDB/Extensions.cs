@@ -1,6 +1,6 @@
-
-using Castle.Core.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sport.Common.Web;
 using System.Reflection;
 
 namespace Sport.Common.EventStoreDB;

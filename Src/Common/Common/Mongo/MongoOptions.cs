@@ -1,4 +1,4 @@
-namespace Sport.Common.Mango;
+namespace Sport.Common.Mongo;
 
 /// <summary>
 /// Settings for connecting to MongoDB.

@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Sport.Common.Exception;
+namespace Sport.Common.BaseExceptions;
 
 /// <summary>
 /// A generic exception for application-level errors.

@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Sport.Common.Exception;
+using Sport.Common.BaseExceptions;
 
-namespace Sport.Common.ProblemDetails;
+namespace Sport.Common.Problems;
 
 /// <summary>
 /// A global error handling engine for our web APIs.
