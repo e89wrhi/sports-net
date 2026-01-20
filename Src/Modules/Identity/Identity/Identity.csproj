@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Identity\Dtos\" />
+    <Folder Include="Identity\Enums\" />
+    <Folder Include="Identity\Exeptions\" />
+    <Folder Include="Identity\Features\" />
+    <Folder Include="Identity\Models\" />
+    <Folder Include="Identity\ValueObjects\" />
+  </ItemGroup>
+
 </Project>

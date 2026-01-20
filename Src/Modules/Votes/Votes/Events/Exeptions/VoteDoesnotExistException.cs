@@ -1,0 +1,2 @@
+﻿
+namespace Votes.Events.Exeptions;
