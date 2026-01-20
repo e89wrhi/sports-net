@@ -1,0 +1,2 @@
+
+namespace Sport.Common.Contracts;
