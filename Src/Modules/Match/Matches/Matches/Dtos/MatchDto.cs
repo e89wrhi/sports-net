@@ -1,5 +1,4 @@
-﻿
-namespace Matches.Matches.Dtos;
+﻿namespace Matches.Matches.Dtos;
 
 public class MatchDto
 {

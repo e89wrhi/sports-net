@@ -1,5 +1,4 @@
-﻿
-namespace Matches.Matches.Features.UpdateMatchStat.V1;
+﻿namespace Matches.Matches.Features.UpdateMatchStat.V1;
 
 public class UpdateMatchStat
 {

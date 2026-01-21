@@ -1,5 +1,4 @@
-﻿
-namespace Matches.Matches.Features.UpdateMatch.V1;
+﻿namespace Matches.Matches.Features.UpdateMatch.V1;
 
 public class UpdateMatchMongo
 {

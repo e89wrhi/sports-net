@@ -1,5 +1,4 @@
-﻿
-namespace Matches.Matches.Features.GetMatches.V1;
+﻿namespace Matches.Matches.Features.GetMatches.V1;
 
 public class GetMatches
 {

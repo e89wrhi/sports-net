@@ -1,5 +1,4 @@
-﻿
-namespace Events.Events.Models;
+﻿namespace Events.Events.Models;
 
 public class EventReadModel
 {

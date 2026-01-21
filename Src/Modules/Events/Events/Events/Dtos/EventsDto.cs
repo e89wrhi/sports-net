@@ -1,5 +1,4 @@
-﻿
-namespace Events.Events.Dtos;
+﻿namespace Events.Events.Dtos;
 
 public class EventsDto
 {
