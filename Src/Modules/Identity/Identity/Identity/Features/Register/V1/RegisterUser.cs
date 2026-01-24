@@ -22,7 +22,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using Models;
 using Sport.Common.Constant;
-using BuildingBlocks.Contracts.EventBus.Messages;
+using Sport.Contracts.EventBus.Messages;
 
 public record RegisterNewUser(string FirstName, string LastName, string Username, string Email,
     string Password, string ConfirmPassword, string PassportNumber) : ICommand<RegisterNewUserResult>;

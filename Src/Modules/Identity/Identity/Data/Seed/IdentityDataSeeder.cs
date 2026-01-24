@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Data.Seed;
 
-using BuildingBlocks.Contracts.EventBus.Messages;
+using Sport.Contracts.EventBus.Messages;
 using Sport.Common.Constant;
 using System.Linq;
 
