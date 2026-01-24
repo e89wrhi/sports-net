@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Transactions;
 
-namespace Matches.Data;
+namespace Match.Data;
 
 public class EfTxMatchBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 where TRequest : notnull, IRequest<TResponse>

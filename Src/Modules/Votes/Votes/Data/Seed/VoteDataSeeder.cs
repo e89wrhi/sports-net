@@ -3,9 +3,9 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Votes.Votes.Models;
+using Vote.Votes.Models;
 
-namespace Votes.Data.Seed;
+namespace Vote.Data.Seed;
 
 public class VoteDataSeeder(
     VoteDbContext voteDbContext,

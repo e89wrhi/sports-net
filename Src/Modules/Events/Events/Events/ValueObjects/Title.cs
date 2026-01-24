@@ -1,6 +1,6 @@
-﻿using Events.Events.Exeptions;
+﻿using Event.Events.Exeptions;
 
-namespace Events.Events.ValueObjects;
+namespace Event.Events.ValueObjects;
 
 public record Title
 {

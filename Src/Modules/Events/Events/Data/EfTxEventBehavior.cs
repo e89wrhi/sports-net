@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Transactions;
 
-namespace Events.Data;
+namespace Event.Data;
 
 public class EfTxEventBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 where TRequest : notnull, IRequest<TResponse>

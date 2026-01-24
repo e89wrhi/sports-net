@@ -1,7 +1,7 @@
 ﻿using Sport.Common.Core;
 using Sport.Common.Web;
 
-namespace Events.Events.Features.GetEvents.V1;
+namespace Event.Events.Features.GetEvents.V1;
 
 
 public record GetEvents(Guid Id) : IQuery<GetEventsResult>;

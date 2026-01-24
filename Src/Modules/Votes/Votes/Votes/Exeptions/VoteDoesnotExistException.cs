@@ -1,1 +1,1 @@
-﻿namespace Votes.Votes.Exeptions; 
+﻿namespace Vote.Votes.Exeptions; 

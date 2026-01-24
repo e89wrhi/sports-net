@@ -1,9 +1,9 @@
 using Sport.Common.EFCore;
-using Events.Events.Models;
+using Event.Events.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace Events.Data;
+namespace Event.Data;
 
 using Sport.Common.Web;
 using Microsoft.Extensions.Logging;

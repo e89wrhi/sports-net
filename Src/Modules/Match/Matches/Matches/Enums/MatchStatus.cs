@@ -1,6 +1,6 @@
 ﻿using System.Security.AccessControl;
 
-namespace Matches.Matches.Enums;
+namespace Match.Matches.Enums;
 
 public enum MatchStatus
 {

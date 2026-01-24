@@ -2,9 +2,9 @@
 using Humanizer;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Matches.Matches.Models;
+using Match.Matches.Models;
 
-namespace Matches.Data;
+namespace Match.Data;
 
 public class MatchReadDbContext : MongoDbContext
 {

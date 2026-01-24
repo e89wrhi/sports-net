@@ -1,6 +1,6 @@
 ﻿using Sport.Matchs.Exeptions;
 
-namespace Matches.Matches.ValueObjects;
+namespace Match.Matches.ValueObjects;
 
 public record MatchId
 {

@@ -1,4 +1,4 @@
-﻿namespace Votes.Votes.Features.AddVote.V1;
+﻿namespace Vote.Votes.Features.AddVote.V1;
 
 public class AddVoteMongo
 {

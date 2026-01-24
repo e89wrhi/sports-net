@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace Matches.Data;
+namespace Match.Data;
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<MatchDbContext>
 {

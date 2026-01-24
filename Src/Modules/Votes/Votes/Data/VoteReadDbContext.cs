@@ -2,9 +2,9 @@
 using Humanizer;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Votes.Votes.Models;
+using Vote.Votes.Models;
 
-namespace Votes.Data;
+namespace Vote.Data;
 
 public class VoteReadDbContext : MongoDbContext
 {

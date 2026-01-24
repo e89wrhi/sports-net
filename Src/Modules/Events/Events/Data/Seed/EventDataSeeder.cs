@@ -3,9 +3,9 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Events.Events.Models;
+using Event.Events.Models;
 
-namespace Events.Data.Seed;
+namespace Event.Data.Seed;
 
 public class EventDataSeeder(
     EventDbContext eventDbContext,

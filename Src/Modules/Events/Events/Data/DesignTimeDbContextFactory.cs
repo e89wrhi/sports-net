@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace Events.Data;
+namespace Event.Data;
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<EventDbContext>
 {

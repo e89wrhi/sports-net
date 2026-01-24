@@ -1,6 +1,6 @@
 ﻿using Sport.Common.BaseExceptions;
 
-namespace Events.Events.Exeptions;
+namespace Event.Events.Exeptions;
 
 public class InvalidTimeException : DomainException
 {

@@ -1,4 +1,4 @@
-﻿namespace Votes.Votes.Features.DeleteVote.V1;
+﻿namespace Vote.Votes.Features.DeleteVote.V1;
 
 public class DeleteVoteMongo
 {

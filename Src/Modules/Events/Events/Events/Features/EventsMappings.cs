@@ -1,8 +1,8 @@
-﻿using Events.Events.Models;
+﻿using Event.Events.Models;
 using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
 
-namespace Events.Events.Features;
+namespace Event.Events.Features;
 
 public class EventsMappings : IEventMapper
 {

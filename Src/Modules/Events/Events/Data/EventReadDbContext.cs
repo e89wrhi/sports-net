@@ -2,9 +2,9 @@
 using Humanizer;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Events.Events.Models;
+using Event.Events.Models;
 
-namespace Events.Data;
+namespace Event.Data;
 
 public class EventReadDbContext : MongoDbContext
 {

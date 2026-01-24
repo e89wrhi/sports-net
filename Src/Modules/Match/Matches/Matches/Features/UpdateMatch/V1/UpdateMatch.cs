@@ -4,10 +4,10 @@ using FluentValidation;
 using Mapster;
 using MapsterMapper;
 using MassTransit;
-using Matches.Data;
-using Matches.Matches.Enums;
-using Matches.Matches.Models;
-using Matches.Matches.ValueObjects;
+using Match.Data;
+using Match.Matches.Enums;
+using Match.Matches.Models;
+using Match.Matches.ValueObjects;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +17,7 @@ using Sport.Common.Core;
 using Sport.Common.Web;
 using Sport.Matchs.Exceptions;
 
-namespace Matches.Matches.Features.UpdateMatch.V1;
+namespace Match.Matches.Features.UpdateMatch.V1;
 
 public record UpdateMatchCommand(
     Guid MatchId,

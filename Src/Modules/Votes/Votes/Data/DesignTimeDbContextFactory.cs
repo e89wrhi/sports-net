@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace Votes.Data;
+namespace Vote.Data;
 
 public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<VoteDbContext>
 {

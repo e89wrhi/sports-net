@@ -2,9 +2,5 @@ using Sport.Common.Core;
 
 namespace Sport.Common.Contracts.EventBus.Messages;
 
-public record EventCreatedIntegrationEvent(
-    Guid EventId,
-    Guid MatchId,
-    string Title,
-    string Time,
-    int EventType) : IIntegrationEvent;
+public record EventCreated(Guid Id) : IIntegrationEvent;
+public record EventDeleted(Guid Id) : IIntegrationEvent;

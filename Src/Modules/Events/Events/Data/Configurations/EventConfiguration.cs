@@ -1,11 +1,11 @@
-﻿using Events.Events.Models;
+﻿using Event.Events.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Events.Data.Configurations;
+namespace Event.Data.Configurations;
 
 using Events.ValueObjects;
-using global::Events.Events.Enums;
+using global::Event.Events.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

@@ -1,8 +1,8 @@
-﻿using Votes.Votes.Models;
+﻿using Vote.Votes.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Votes.Data.Configurations;
+namespace Vote.Data.Configurations;
 
 using Votes.ValueObjects;
 using Microsoft.EntityFrameworkCore;

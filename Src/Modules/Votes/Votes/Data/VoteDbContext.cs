@@ -1,9 +1,9 @@
 using Sport.Common.EFCore;
-using Votes.Votes.Models;
+using Vote.Votes.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace Votes.Data;
+namespace Vote.Data;
 
 using Sport.Common.Web;
 using Microsoft.Extensions.Logging;

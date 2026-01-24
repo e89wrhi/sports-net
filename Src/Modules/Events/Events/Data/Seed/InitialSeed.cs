@@ -1,9 +1,9 @@
-﻿namespace Events.Data.Seed;
+﻿namespace Event.Data.Seed;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using global::Events.Events.Models;
+using global::Event.Events.Models;
 using MassTransit;
 
 public static class InitialData

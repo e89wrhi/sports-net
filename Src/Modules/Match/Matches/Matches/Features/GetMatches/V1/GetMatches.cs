@@ -1,5 +1,5 @@
-﻿using Matches.Matches.Data;
-using Matches.Matches.Dtos;
+﻿using Match.Matches.Data;
+using Match.Matches.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Routing;
 using Sport.Common.Core.CQRS;
 using Sport.Common.Web;
 
-namespace Matches.Matches.Features.GetMatches.V1;
+namespace Match.Matches.Features.GetMatches.V1;
 
 public record GetMatchesQuery() : IQuery<MatchesDto>;
 

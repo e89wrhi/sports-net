@@ -1,9 +1,9 @@
 ﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
-using Votes.Data;
-using Votes.Votes.Enums;
-using Votes.Votes.Models;
-using Votes.Votes.ValueObjects;
+using Vote.Data;
+using Vote.Votes.Enums;
+using Vote.Votes.Models;
+using Vote.Votes.ValueObjects;
 using FluentValidation;
 using Mapster;
 using MapsterMapper;
@@ -17,7 +17,7 @@ using Sport.Common.Web;
 using Microsoft.EntityFrameworkCore;
 using Sport.Votes.Exceptions;
 
-namespace Votes.Votes.Features.AddVote.V1;
+namespace Vote.Votes.Features.AddVote.V1;
 
 public record AddVoteCommand(
     Guid MatchId,

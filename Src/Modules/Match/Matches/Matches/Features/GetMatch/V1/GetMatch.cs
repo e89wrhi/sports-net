@@ -1,6 +1,6 @@
-﻿using Matches.Matches.Data;
-using Matches.Matches.Dtos;
-using Matches.Matches.ValueObjects;
+﻿using Match.Matches.Data;
+using Match.Matches.Dtos;
+using Match.Matches.ValueObjects;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +9,7 @@ using Sport.Common.Core.CQRS;
 using Sport.Common.Web;
 using Sport.Common.Exception;
 
-namespace Matches.Matches.Features.GetMatch.V1;
+namespace Match.Matches.Features.GetMatch.V1;
 
 public record GetMatchQuery(Guid Id) : IQuery<MatchDto>;
 

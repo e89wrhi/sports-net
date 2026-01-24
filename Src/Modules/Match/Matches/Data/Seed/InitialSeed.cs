@@ -1,6 +1,6 @@
-﻿namespace Matches.Data.Seed;
+﻿namespace Match.Data.Seed;
 
-using global::Matches.Matches.Models;
+using global::Match.Matches.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

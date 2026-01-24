@@ -3,9 +3,9 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Matches.Matches.Models;
+using Match.Matches.Models;
 
-namespace Matches.Data.Seed;
+namespace Match.Data.Seed;
 
 public class MatchDataSeeder(
     MatchDbContext matchDbContext,

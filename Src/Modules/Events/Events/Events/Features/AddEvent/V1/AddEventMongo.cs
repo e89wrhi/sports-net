@@ -1,4 +1,4 @@
-﻿namespace Events.Events.Features.AddEvent.V1;
+﻿namespace Event.Events.Features.AddEvent.V1;
 
 using Sport.Common.Core;
 using System;

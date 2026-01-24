@@ -1,9 +1,9 @@
 using Sport.Common.EFCore;
-using Matches.Matches.Models;
+using Match.Matches.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace Matches.Data;
+namespace Match.Data;
 
 using Sport.Common.Web;
 using Microsoft.Extensions.Logging;

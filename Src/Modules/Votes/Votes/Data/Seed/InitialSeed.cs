@@ -1,6 +1,6 @@
-﻿namespace Votes.Data.Seed;
+﻿namespace Vote.Data.Seed;
 
-using global::Votes.Votes.Models;
+using global::Vote.Votes.Models;
 using Google.Rpc;
 using MassTransit;
 using System;

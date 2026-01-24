@@ -1,8 +1,8 @@
-﻿using Matches.Matches.Models;
+﻿using Match.Matches.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Matches.Data.Configurations;
+namespace Match.Data.Configurations;
 
 using Matches.ValueObjects;
 using Microsoft.EntityFrameworkCore;

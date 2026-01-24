@@ -1,9 +1,9 @@
 ﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
-using Matches.Data;
-using Matches.Matches.Enums;
-using Matches.Matches.Models;
-using Matches.Matches.ValueObjects;
+using Match.Data;
+using Match.Matches.Enums;
+using Match.Matches.Models;
+using Match.Matches.ValueObjects;
 using FluentValidation;
 using Mapster;
 using MapsterMapper;
@@ -17,7 +17,7 @@ using Sport.Common.Web;
 using Microsoft.EntityFrameworkCore;
 using Sport.Matchs.Exceptions;
 
-namespace Matches.Matches.Features.DeleteMatch.V1;
+namespace Match.Matches.Features.DeleteMatch.V1;
 
 public record DeleteMatchCommand(
     Guid MatchId) : ICommand<DeleteMatchCommandResponse>

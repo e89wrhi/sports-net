@@ -1,8 +1,8 @@
-﻿using Matches.Matches.Enums;
-using Matches.Matches.ValueObjects;
+﻿using Match.Matches.Enums;
+using Match.Matches.ValueObjects;
 using Sport.Common.Core;
 
-namespace Matches.Matches.Models;
+namespace Match.Matches.Models;
 
 public record MatchModel : Aggregate<MatchId>
 {

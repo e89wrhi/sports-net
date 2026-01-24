@@ -1,6 +1,6 @@
 ﻿using Sport.Common.BaseExceptions;
 
-namespace Matches.Matches.Exeptions;
+namespace Match.Matches.Exeptions;
 
 public class InvalidScoreException : DomainException
 {

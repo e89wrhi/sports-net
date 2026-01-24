@@ -1,6 +1,6 @@
-﻿using Matches.Matches.Exeptions;
+﻿using Match.Matches.Exeptions;
 
-namespace Matches.Matches.ValueObjects;
+namespace Match.Matches.ValueObjects;
 
 public record AwayTeam
 {

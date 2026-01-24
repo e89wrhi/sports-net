@@ -1,6 +1,6 @@
-﻿using Matches.Matches.Enums;
+﻿using Match.Matches.Enums;
 
-namespace Matches.Matches.Dtos;
+namespace Match.Matches.Dtos;
 
 public record MatchDto(
     Guid Id,

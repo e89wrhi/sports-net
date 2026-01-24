@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Transactions;
 
-namespace Votes.Data;
+namespace Vote.Data;
 
 public class EfTxVoteBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 where TRequest : notnull, IRequest<TResponse>

@@ -2,7 +2,5 @@ using Sport.Common.Core;
 
 namespace Sport.Common.Contracts.EventBus.Messages;
 
-public record VoteCreatedIntegrationEvent(
-    Guid VoteId,
-    Guid MatchId,
-    int VoteType) : IIntegrationEvent; 
+public record VoteCreated(Guid Id) : IIntegrationEvent;
+public record VoteDeleted(Guid Id) : IIntegrationEvent;
