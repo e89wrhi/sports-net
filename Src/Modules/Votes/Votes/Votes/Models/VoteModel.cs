@@ -16,14 +16,19 @@ public record VoteModel : Aggregate<VoteId>
     {
         var item = new VoteModel()
         {
+            Id = VoteId.Of(Guid.NewGuid()),
             VoterId = voterId,
             MatchId = matchId,
             Type = type,
-            VotedAt = votedAt
+            VotedAt = votedAt,
+            Version = 1
         };
 
-        var @event = new VoteCreatedDomainEvent();
+        var @event = new VoteCreatedDomainEvent(item.Id, item.MatchId, item.VoterId, item.Type);
         item.AddDomainEvent(@event);
         return item;
     }
 }
+
+public record VoteCreatedDomainEvent(VoteId Id, MatchId MatchId, VoterId VoterId, VoteType Type) : IDomainEvent;
+public record VoteDeletedDomainEvent(VoteId Id, MatchId MatchId, VoterId VoterId, VoteType Type): IDomainEvent;

@@ -1,16 +1,16 @@
-﻿using Events.Events.Models;
 using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
+using Votes.Votes.Models;
 
-namespace Events.Events.Features;
+namespace Votes.Votes.Features;
 
-public class EventsMappings : IEventMapper
+public class VotesMappings : IEventMapper
 {
     public IIntegrationEvent? MapToIntegrationEvent(IDomainEvent @event)
     {
         return @event switch
         {
-            EventCreatedDomainEvent e => new EventCreatedIntegrationEvent(e.Id, e.MatchId, e.Title, e.Time, (int)e.Type),
+            VoteCreatedDomainEvent e => new VoteCreatedIntegrationEvent(e.Id, e.MatchId, (int)e.Type),
             _ => null
         };
     }

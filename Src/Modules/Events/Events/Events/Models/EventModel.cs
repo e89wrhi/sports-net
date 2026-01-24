@@ -1,6 +1,6 @@
-﻿using Events.Events.Features.AddEvent.V1;
-using Events.Events.ValueObjects;
+﻿using Events.Events.ValueObjects;
 using Sport.Common.Core;
+
 namespace Events.Events.Models;
 
 public record EventModel : Aggregate<EventId>
@@ -14,14 +14,20 @@ public record EventModel : Aggregate<EventId>
     {
         var item = new EventModel()
         {
+            Id = EventId.Of(Guid.NewGuid()),
             MatchId = matchId,
             Title = title,
             Time = time,
-            Type = type
+            Type = type,
+            Version = 1
         };
 
-        var @event = new EventCreatedDomainEvent();
+        var @event = new EventCreatedDomainEvent(item.Id, item.MatchId, item.Title, item.Time, item.Type);
         item.AddDomainEvent(@event);
         return item;
     }
 }
+
+public record EventCreatedDomainEvent(EventId Id, MatchId MatchId, Title Title, Time Time, EventType Type) : IDomainEvent;
+
+public record EventDeletedDomainEvent(EventId Id, MatchId MatchId) : IDomainEvent;

@@ -1,4 +1,5 @@
 ﻿using Sport.Common.BaseExceptions;
+
 namespace Sport.Votes.Exeptions;
 
 public class InvalidMatchIdException : DomainException

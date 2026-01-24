@@ -1,14 +1,9 @@
-﻿namespace Events.Events.Features.AddEvent.V1;
-
-using Aircrafts.ValueObjects;
-using Ardalis.GuardClauses;
-using BuildingBlocks.Core.CQRS;
-using BuildingBlocks.Core.Event;
-using BuildingBlocks.Web;
-using Data;
+﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
-using Exceptions;
-using Event.Airports.ValueObjects;
+using Events.Data;
+using Events.Events.Enums;
+using Events.Events.Models;
+using Events.Events.ValueObjects;
 using FluentValidation;
 using Mapster;
 using MapsterMapper;
@@ -19,47 +14,52 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Sport.Common.Core;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using ValueObjects;
+using Sport.Common.Web;
 
-public record AddEvent(string name) : ICommand<AddEventResult>, IInternalCommand
+namespace Events.Events.Features.AddEvent.V1;
+
+public record AddEventCommand(
+    Guid MatchId,
+    string Title,
+    DateTime Time,
+    string Type) : ICommand<AddEventCommandResponse>
 {
-
+    public Guid Id { get; init; } = NewId.NextGuid();
 }
 
-public record AddEventResult();
+public record AddEventCommandResponse(Guid Id);
 
-public record EventCreatedDomainEvent() : IDomainEvent;
+public record AddEventRequest(
+    Guid MatchId,
+    string Title,
+    DateTime Time,
+    Enums.EventType Type);
 
-public record AddEventRequestDto();
-
-public record AddEventResponseDto();
+public record AddEventRequestResponse(Guid Id);
 
 public class AddEventEndpoint : IMinimalEndpoint
 {
     public IEndpointRouteBuilder MapEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapPost($"{EndpointConfig.BaseApiPath}/event", async (CreateEventRequestDto request,
+        builder.MapPost($"{EndpointConfig.BaseApiPath}/events", async (AddEventRequest request,
                 IMediator mediator, IMapper mapper,
                 CancellationToken cancellationToken) =>
         {
-            var command = mapper.Map<CreateEvent>(request);
+            var command = mapper.Map<AddEventCommand>(request);
 
             var result = await mediator.Send(command, cancellationToken);
 
-            var response = result.Adapt<CreateEventResponseDto>();
+            var response = result.Adapt<AddEventRequestResponse>();
 
-            return Results.CreatedAtRoute("GetEvents", new { id = result.Id }, response);
+            return Results.Ok(response);
         })
             .RequireAuthorization(nameof(ApiScope))
-            .WithName("CreateEvent")
+            .WithName("AddEvent")
             .WithApiVersionSet(builder.NewApiVersionSet("Event").Build())
-            .Produces<CreateEventResponseDto>(StatusCodes.Status201Created)
+            .Produces<AddEventRequestResponse>()
             .ProducesProblem(StatusCodes.Status400BadRequest)
-            .WithSummary("Create Event")
-            .WithDescription("Create Event")
+            .WithSummary("Add Event")
+            .WithDescription("Add Event")
             .WithOpenApi()
             .HasApiVersion(1.0);
 
@@ -67,21 +67,35 @@ public class AddEventEndpoint : IMinimalEndpoint
     }
 }
 
-public class AddEventValidator : AbstractValidator<AddEvent>
+public class AddEventCommandValidator : AbstractValidator<AddEventCommand>
 {
-
+    public AddEventCommandValidator()
+    {
+        RuleFor(x => x.MatchId).NotEmpty().WithMessage("Match is required");
+        RuleFor(x => x.Time).NotEmpty().WithMessage("Time is required");
+        RuleFor(x => x.Title).NotEmpty().WithMessage("Title is required");
+        RuleFor(x => x.Type).NotEmpty().WithMessage("Type is required");
+    }
 }
 
-internal class AddEventHandler : ICommandHandler<CreateEvent, CreateEventResult>
+internal class AddEventHandler : IRequestHandler<AddEventCommand, AddEventCommandResponse>
 {
-    private readonly EventDbContext _eventDbContext;
+    private readonly EventDbContext _dbContext;
 
-    public CreateEventHandler(EventDbContext eventDbContext)
+    public AddEventHandler(EventDbContext dbContext)
     {
-        _eventDbContext = eventDbContext;
+        _dbContext = dbContext;
     }
 
-    public async Task<CreateEventResult> Handle(CreateEvent request, CancellationToken cancellationToken)
+    public async Task<AddEventCommandResponse> Handle(AddEventCommand request, CancellationToken cancellationToken)
     {
+        Guard.Against.Null(request, nameof(request));
+
+        var itemEntity = Models.EventModel.Create(MatchId.Of(request.MatchId),
+            Title.Of(request.Title), Time.Of(request.Time), request.Type);
+
+        var newEvent = (await _dbContext.Events.AddAsync(itemEntity, cancellationToken)).Entity;
+        await _dbContext.SaveChangesAsync(cancellationToken);
+        return new AddEventCommandResponse(newEvent.Id);
     }
 }

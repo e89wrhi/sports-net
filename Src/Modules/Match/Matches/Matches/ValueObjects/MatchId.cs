@@ -1,5 +1,5 @@
-﻿
-using Sport.Matchs.Exeptions;
+﻿using Sport.Matchs.Exeptions;
+
 namespace Matches.Matches.ValueObjects;
 
 public record MatchId

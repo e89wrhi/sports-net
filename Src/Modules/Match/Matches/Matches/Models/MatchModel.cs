@@ -24,6 +24,7 @@ public record MatchModel : Aggregate<MatchId>
     {
         var item = new MatchModel()
         {
+            Id = MatchId.Of(Guid.NewGuid()),
             HomeTeam = homeTeam,
             AwayTeam = awayTeam,
             League = matchLeague,
@@ -32,7 +33,7 @@ public record MatchModel : Aggregate<MatchId>
             Version = 1,
         };
 
-        var @event = new MatchCreatedDomainEvent();
+        var @event = new MatchCreatedDomainEvent(item.Id);
         item.AddDomainEvent(@event);
         return item;
     }
@@ -47,7 +48,7 @@ public record MatchModel : Aggregate<MatchId>
         MatchTime = matchTime;
         Version++;
         LastModified = DateTime.UtcNow;
-        AddDomainEvent(new MatchUpdatedDomainEvent());
+        AddDomainEvent(new MatchUpdatedDomainEvent(Id));
     }
 
     public void UpdateScore(Score homeTeamScore, Score awayTeamScore)
@@ -56,7 +57,7 @@ public record MatchModel : Aggregate<MatchId>
         AwayTeamScore = awayTeamScore;
         Version++;
         LastModified = DateTime.UtcNow;
-        AddDomainEvent(new MatchScoreUpdatedDomainEvent());
+        AddDomainEvent(new MatchScoreUpdatedDomainEvent(Id));
     }
 
     public void UpdateVotesCount(int homeVotesCount, int awayVotesCount, int drawVotesCount)
@@ -75,6 +76,11 @@ public record MatchModel : Aggregate<MatchId>
     {
         IsDeleted = true;
         LastModified = DateTime.UtcNow;
-        AddDomainEvent(new MatchDeletedDomainEvent());
+        AddDomainEvent(new MatchDeletedDomainEvent(Id));
     }
 }
+
+public record MatchCreatedDomainEvent(MatchId Id) : IDomainEvent;
+public record MatchUpdatedDomainEvent(MatchId Id) : IDomainEvent;
+public record MatchScoreUpdatedDomainEvent(MatchId Id) : IDomainEvent;
+public record MatchDeletedDomainEvent(MatchId Id) : IDomainEvent;

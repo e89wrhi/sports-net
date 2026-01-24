@@ -1,5 +1,5 @@
-﻿
-using Sport.Events.Exeptions;
+﻿using Sport.Events.Exeptions;
+
 namespace Events.Events.ValueObjects;
 
 public record EventId

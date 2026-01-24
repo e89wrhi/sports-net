@@ -1,5 +1,3 @@
 ﻿namespace Matches.Matches.Dtos;
 
-public class MatchesDto
-{
-}
+public record MatchesDto(IEnumerable<MatchDto> Matches);
