@@ -13,6 +13,13 @@
     <Folder Include="Identity\Features\" />
     <Folder Include="Identity\Models\" />
     <Folder Include="Identity\ValueObjects\" />
+    <Folder Include="Configurations\" />
+    <Folder Include="Data\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common\Common.csproj" />
   </ItemGroup>
 
 </Project>
