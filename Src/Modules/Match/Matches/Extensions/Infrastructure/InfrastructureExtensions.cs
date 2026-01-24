@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Match.Data;
 using Match.Data.Seed;
+using Match.GrpcServer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Sport.Common.EFCore;

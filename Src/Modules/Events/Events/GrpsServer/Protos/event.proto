@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package event;
+import "google/protobuf/timestamp.proto";
+
+service EventGrpcService {
+
+  rpc GetById (GetByIdRequest) returns (GetEventByIdResult);
+}
+
+message GetByIdRequest {
+  string Id = 1;
+}
+
+message GetEventByIdResult{
+  EventResponse EventDto = 1;
+}
+
+message EventResponse {
+  string Id = 1;
+}

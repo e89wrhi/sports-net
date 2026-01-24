@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package match;
+import "google/protobuf/timestamp.proto";
+
+service MatchGrpcService {
+
+  rpc GetById (GetByIdRequest) returns (GetMatchByIdResult);
+}
+
+message GetByIdRequest {
+  string Id = 1;
+}
+
+message GetMatchByIdResult{
+  MatchResponse MatchDto = 1;
+}
+
+message MatchResponse {
+  string Id = 1;
+}

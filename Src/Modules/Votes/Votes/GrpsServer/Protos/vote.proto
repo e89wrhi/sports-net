@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package vote;
+import "google/protobuf/timestamp.proto";
+
+service VoteGrpcService {
+
+  rpc GetById (GetByIdRequest) returns (GetVoteByIdResult);
+}
+
+message GetByIdRequest {
+  string Id = 1;
+}
+
+message GetVoteByIdResult{
+  VoteResponse VoteDto = 1;
+}
+
+message VoteResponse {
+  string Id = 1;
+}
