@@ -4,22 +4,15 @@ package vote;
 import "google/protobuf/timestamp.proto";
 
 service VoteGrpcService {
-
-  rpc GetById (GetByIdRequest) returns (GetVoteByIdResult);
+  rpc AddVote (AddVoteRequest) returns (AddVoteResponse);
 }
 
-message GetByIdRequest {
-  string Id = 1;
-}
-
-message GetVoteByIdResult{
-  VoteResponse VoteDto = 1;
-}
-
-message VoteResponse {
-  string Id = 1;
+message AddVoteRequest {
+  string MatchId = 1;
   string VoterId = 2;
-  string MatchId = 3;
-  string Type = 4;
-  google.protobuf.Timestamp VotedAt = 5;
+  int32 Type = 3;
+}
+
+message AddVoteResponse {
+  string Id = 1;
 }

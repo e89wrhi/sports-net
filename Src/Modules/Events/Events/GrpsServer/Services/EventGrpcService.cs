@@ -1,14 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Grpc.Core;
-using Mapster;
 using MediatR;
 using @event;
-using Event.Events.Features.GetEventById.V1;
+using Event.Events.Features.GetEvents.V1;
 
 namespace Event.GrpcServer.Services;
-
-using Grpc.Core;
-using System;
 
 public class EventGrpcServices : EventGrpcService.EventGrpcServiceBase
 {
@@ -19,20 +16,23 @@ public class EventGrpcServices : EventGrpcService.EventGrpcServiceBase
         _mediator = mediator;
     }
 
-    public override async Task<GetEventByIdResult> GetById(GetByIdRequest request, ServerCallContext context)
+    public override async Task<GetEventsResult> GetEvents(GetEventsRequest request, ServerCallContext context)
     {
-        var result = await _mediator.Send(new GetEventById(Guid.Parse(request.Id)));
+        var result = await _mediator.Send(new GetEvents { MatchId = Guid.Parse(request.MatchId) });
 
-        return new GetEventByIdResult
+        var response = new GetEventsResult();
+        foreach (var eventDto in result.EventDtos)
         {
-            EventDto = new EventResponse
+            response.EventDtos.Add(new EventResponse
             {
-                Id = result.EventDto.Id.ToString(),
-                MatchId = result.EventDto.MatchId.ToString(),
-                Title = result.EventDto.Title,
-                Time = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(result.EventDto.Time.ToUniversalTime()),
-                Type = result.EventDto.Type.ToString()
-            }
-        };
+                Id = eventDto.Id.ToString(),
+                MatchId = eventDto.MatchId.ToString(),
+                Title = eventDto.Title,
+                Time = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(eventDto.Time.ToUniversalTime()),
+                Type = eventDto.Type.ToString()
+            });
+        }
+
+        return response;
     }
 }

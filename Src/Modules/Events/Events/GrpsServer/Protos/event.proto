@@ -4,16 +4,15 @@ package event;
 import "google/protobuf/timestamp.proto";
 
 service EventGrpcService {
-
-  rpc GetById (GetByIdRequest) returns (GetEventByIdResult);
+  rpc GetEvents (GetEventsRequest) returns (GetEventsResult);
 }
 
-message GetByIdRequest {
-  string Id = 1;
+message GetEventsRequest {
+  string MatchId = 1;
 }
 
-message GetEventByIdResult{
-  EventResponse EventDto = 1;
+message GetEventsResult {
+  repeated EventResponse EventDtos = 1;
 }
 
 message EventResponse {

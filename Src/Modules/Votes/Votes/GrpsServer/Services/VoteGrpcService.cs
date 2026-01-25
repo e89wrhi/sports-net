@@ -1,14 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Grpc.Core;
-using Mapster;
 using MediatR;
 using vote;
-using Vote.Votes.Features.GetVoteById.V1;
+using Vote.Votes.Features.AddVote.V1;
+using Vote.Votes.Enums;
 
 namespace Vote.GrpcServer.Services;
-
-using Grpc.Core;
-using System;
 
 public class VoteGrpcServices : VoteGrpcService.VoteGrpcServiceBase
 {
@@ -19,20 +17,16 @@ public class VoteGrpcServices : VoteGrpcService.VoteGrpcServiceBase
         _mediator = mediator;
     }
 
-    public override async Task<GetVoteByIdResult> GetById(GetByIdRequest request, ServerCallContext context)
+    public override async Task<AddVoteResponse> AddVote(AddVoteRequest request, ServerCallContext context)
     {
-        var result = await _mediator.Send(new GetVoteById(Guid.Parse(request.Id)));
+        var result = await _mediator.Send(new AddVoteCommand(
+            Guid.Parse(request.MatchId),
+            Guid.Parse(request.VoterId),
+            (VoteType)request.Type));
 
-        return new GetVoteByIdResult
+        return new AddVoteResponse
         {
-            VoteDto = new VoteResponse
-            {
-                Id = result.VoteDto.Id.ToString(),
-                VoterId = result.VoteDto.VoterId.ToString(),
-                MatchId = result.VoteDto.MatchId.ToString(),
-                Type = result.VoteDto.Type,
-                VotedAt = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(result.VoteDto.VotedAt.ToUniversalTime())
-            }
+            Id = result.Id.ToString()
         };
     }
 }
