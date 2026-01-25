@@ -1,4 +1,4 @@
-﻿namespace Vote.Votes.Exeptions;
+﻿namespace Vote.Exeptions;
 
 public class AlreadyVotedException
 {

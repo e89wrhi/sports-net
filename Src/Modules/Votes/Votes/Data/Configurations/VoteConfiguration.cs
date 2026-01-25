@@ -1,4 +1,4 @@
-﻿using Vote.Votes.Models;
+﻿using Vote.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

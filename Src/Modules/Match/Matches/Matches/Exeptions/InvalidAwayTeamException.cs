@@ -1,6 +1,6 @@
 ﻿using Sport.Common.BaseExceptions;
 
-namespace Match.Matches.Exeptions;
+namespace Match.Exeptions;
 
 public class InvalidAwayTeamException : DomainException
 {

@@ -6,9 +6,9 @@ using MongoDB.Driver.Linq;
 using Sport.Common.Core;
 using Sport.Votes.Exceptions;
 using Vote.Data;
-using Vote.Votes.Models;
+using Vote.Models;
 
-namespace Vote.Votes.Features.DeleteVote.V1;
+namespace Vote.Features.DeleteVote.V1;
 
 public record DeleteVoteMongo(Guid Id, Guid MatchId, Guid VoterId) : InternalCommand;
 

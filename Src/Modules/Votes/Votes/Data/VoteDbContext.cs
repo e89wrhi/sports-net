@@ -1,5 +1,5 @@
 using Sport.Common.EFCore;
-using Vote.Votes.Models;
+using Vote.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 

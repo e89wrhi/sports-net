@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using global::Event.Events.Models;
+using global::Events.Models;
 using MassTransit;
 
 public static class InitialData

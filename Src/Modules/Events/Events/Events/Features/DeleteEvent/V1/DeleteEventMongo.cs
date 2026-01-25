@@ -1,7 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using Event.Data;
-using Event.Events.Features.DeleteEvent.V1;
-using Event.Events.Models;
+using Events.Features.DeleteEvent.V1;
+using Events.Models;
 using MapsterMapper;
 using MediatR;
 using MongoDB.Driver;
@@ -9,7 +9,7 @@ using MongoDB.Driver.Linq;
 using Sport.Common.Core;
 using Sport.Events.Exceptions;
 
-namespace Event.Events.Features.DeleteEvent.V1;
+namespace Events.Features.DeleteEvent.V1;
 
 public record DeleteEventMongo(Guid Id): InternalCommand;
 

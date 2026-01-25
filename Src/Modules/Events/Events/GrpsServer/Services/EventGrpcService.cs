@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using MediatR;
 using @event;
-using Event.Events.Features.GetEvents.V1;
+using Events.Features.GetEvents.V1;
 
 namespace Event.GrpcServer.Services;
 

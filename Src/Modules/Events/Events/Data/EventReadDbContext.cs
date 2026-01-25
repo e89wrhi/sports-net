@@ -2,7 +2,7 @@
 using Humanizer;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Event.Events.Models;
+using Events.Models;
 
 namespace Event.Data;
 

@@ -1,14 +1,14 @@
 ﻿using Ardalis.GuardClauses;
 using MapsterMapper;
 using Match.Data;
-using Match.Matches.Models;
+using Match.Models;
 using MediatR;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using Sport.Common.Core;
 using Sport.Matchs.Exceptions;
 
-namespace Match.Matches.Features.CreateMatch.V1;
+namespace Match.Features.CreateMatch.V1;
 
 public record CreateMatchMongo(
     Guid Id,

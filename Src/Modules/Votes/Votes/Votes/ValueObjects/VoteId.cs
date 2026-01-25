@@ -1,6 +1,6 @@
 ﻿using Sport.Votes.Exeptions;
 
-namespace Vote.Votes.ValueObjects;
+namespace Vote.ValueObjects;
 
 public record VoteId
 {

@@ -1,4 +1,4 @@
-﻿namespace Match.Matches.Models;
+﻿namespace Match.Models;
 
 public class MatchReadModel
 {

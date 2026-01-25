@@ -3,7 +3,7 @@ using Grpc.Core;
 using Mapster;
 using MediatR;
 using match;
-using Match.Matches.Features.GetMatch.V1;
+using Match.Features.GetMatch.V1;
 
 namespace Match.GrpcServer.Services;
 

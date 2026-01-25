@@ -1,6 +1,8 @@
 ﻿namespace Match.Data.Seed;
 
-using global::Match.Matches.Models;
+using global::Match.Models;
+using Match.Enums;
+using Match.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

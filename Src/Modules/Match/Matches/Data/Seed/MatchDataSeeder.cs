@@ -3,7 +3,7 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Match.Matches.Models;
+using Match.Models;
 
 namespace Match.Data.Seed;
 

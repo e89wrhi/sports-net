@@ -4,9 +4,9 @@ using Google.Rpc;
 using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
 using Match.Data;
-using Match.Matches.Enums;
-using Match.Matches.Models;
-using Match.Matches.ValueObjects;
+using Match.Enums;
+using Match.Models;
+using Match.ValueObjects;
 using Mapster;
 using MapsterMapper;
 using MassTransit;
@@ -19,7 +19,7 @@ using Sport.Common.Web;
 using Microsoft.EntityFrameworkCore;
 using Sport.Matchs.Exceptions;
 
-namespace Match.Matches.Features.UpdateMatchStat.V1;
+namespace Match.Features.UpdateMatchStat.V1;
 
 public record UpdateMatchStatCommand(
     Guid MatchId,

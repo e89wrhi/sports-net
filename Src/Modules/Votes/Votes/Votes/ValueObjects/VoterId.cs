@@ -1,6 +1,6 @@
-﻿using Vote.Votes.Exeptions;
+﻿using Vote.Exeptions;
 
-namespace Vote.Votes.ValueObjects;
+namespace Vote.ValueObjects;
 
 public record VoterId
 {

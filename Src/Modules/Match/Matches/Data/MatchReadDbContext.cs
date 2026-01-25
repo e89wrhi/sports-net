@@ -2,7 +2,7 @@
 using Humanizer;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Match.Matches.Models;
+using Match.Models;
 
 namespace Match.Data;
 

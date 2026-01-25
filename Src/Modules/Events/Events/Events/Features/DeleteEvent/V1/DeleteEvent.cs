@@ -1,9 +1,9 @@
 ﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
 using Event.Data;
-using Event.Events.Enums;
-using Event.Events.Models;
-using Event.Events.ValueObjects;
+using Events.Enums;
+using Events.Models;
+using Events.ValueObjects;
 using FluentValidation;
 using Mapster;
 using MapsterMapper;
@@ -17,7 +17,7 @@ using Sport.Common.Core;
 using Sport.Common.Web;
 using Sport.Events.Exceptions;
 
-namespace Event.Events.Features.DeleteEvent.V1;
+namespace Events.Features.DeleteEvent.V1;
 
 public record DeleteEventCommand(
     Guid EventId) : ICommand<DeleteEventCommandResponse>

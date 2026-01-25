@@ -1,8 +1,8 @@
 using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
-using Vote.Votes.Models;
+using Vote.Models;
 
-namespace Vote.Votes.Features;
+namespace Vote.Features;
 
 public class VotesMappings : IEventMapper
 {

@@ -1,6 +1,6 @@
 ﻿using Sport.Common.BaseExceptions;
 
-namespace Vote.Votes.Exeptions;
+namespace Vote.Exeptions;
 
 public class InvalidVoterIdException : DomainException
 {

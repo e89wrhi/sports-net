@@ -1,4 +1,4 @@
-﻿namespace Vote.Votes.Models;
+﻿namespace Vote.Models;
 
 public class VoteReadModel
 {

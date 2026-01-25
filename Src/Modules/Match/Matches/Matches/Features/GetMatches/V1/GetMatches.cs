@@ -1,7 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
 using Match.Data;
-using Match.Matches.Dtos;
+using Match.Dtos;
 using Mapster;
 using MapsterMapper;
 using MediatR;
@@ -15,7 +15,7 @@ using Sport.Common.Core;
 using Sport.Common.Web;
 using Sport.Matchs.Exceptions;
 
-namespace Match.Matches.Features.GetMatches.V1;
+namespace Match.Features.GetMatches.V1;
 
 public record GetMatchs : IQuery<GetMatchsResult>, ICacheRequest
 {

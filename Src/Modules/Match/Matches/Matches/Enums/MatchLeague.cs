@@ -1,6 +1,6 @@
 ﻿using System.Security.AccessControl;
 
-namespace Match.Matches.Enums;
+namespace Match.Enums;
 
 public enum MatchLeague
 {

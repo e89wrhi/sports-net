@@ -5,9 +5,9 @@ using Mapster;
 using MapsterMapper;
 using MassTransit;
 using Match.Data;
-using Match.Matches.Enums;
-using Match.Matches.Models;
-using Match.Matches.ValueObjects;
+using Match.Enums;
+using Match.Models;
+using Match.ValueObjects;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +17,7 @@ using Sport.Common.Core;
 using Sport.Common.Web;
 using Sport.Matchs.Exceptions;
 
-namespace Match.Matches.Features.UpdateMatch.V1;
+namespace Match.Features.UpdateMatch.V1;
 
 public record UpdateMatchCommand(
     Guid MatchId,

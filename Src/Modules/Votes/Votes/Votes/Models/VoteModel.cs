@@ -1,8 +1,8 @@
 ﻿using Sport.Common.Core;
-using Vote.Votes.Enums;
-using Vote.Votes.ValueObjects;
+using Vote.Enums;
+using Vote.ValueObjects;
 
-namespace Vote.Votes.Models;
+namespace Vote.Models;
 
 public record VoteModel : Aggregate<VoteId>
 {

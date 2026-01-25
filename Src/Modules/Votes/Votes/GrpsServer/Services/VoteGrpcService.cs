@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Grpc.Core;
 using MediatR;
-using vote;
-using Vote.Votes.Features.AddVote.V1;
-using Vote.Votes.Enums;
+using Vote;
+using Vote.Features.AddVote.V1;
+using Vote.Enums;
 
 namespace Vote.GrpcServer.Services;
 

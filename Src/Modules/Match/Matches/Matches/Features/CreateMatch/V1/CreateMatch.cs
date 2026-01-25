@@ -1,9 +1,9 @@
 ﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
 using Match.Data;
-using Match.Matches.Enums;
-using Match.Matches.Models;
-using Match.Matches.ValueObjects;
+using Match.Enums;
+using Match.Models;
+using Match.ValueObjects;
 using FluentValidation;
 using Mapster;
 using MapsterMapper;
@@ -16,7 +16,7 @@ using Sport.Common.Core;
 using Sport.Common.Web;
 using Microsoft.EntityFrameworkCore;
 
-namespace Match.Matches.Features.CreateMatch.V1;
+namespace Match.Features.CreateMatch.V1;
 
 public record CreateMatchCommand(
     HomeTeam HomeTeam,

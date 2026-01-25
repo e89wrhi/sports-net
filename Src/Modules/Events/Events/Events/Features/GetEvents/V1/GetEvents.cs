@@ -1,7 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
 using Event.Data;
-using Event.Events.Dtos;
+using Events.Dtos;
 using Mapster;
 using MapsterMapper;
 using MediatR;
@@ -15,7 +15,7 @@ using Sport.Common.Core;
 using Sport.Common.Web;
 using Sport.Events.Exceptions;
 
-namespace Event.Events.Features.GetEvents.V1;
+namespace Events.Features.GetEvents.V1;
 
 public record GetEvents : IQuery<GetEventsResult>, ICacheRequest
 {

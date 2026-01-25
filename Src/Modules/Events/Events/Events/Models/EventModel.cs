@@ -1,8 +1,8 @@
-﻿using Event.Events.Enums;
-using Event.Events.ValueObjects;
+﻿using Events.Enums;
+using Events.ValueObjects;
 using Sport.Common.Core;
 
-namespace Event.Events.Models;
+namespace Events.Models;
 
 public record EventModel : Aggregate<EventId>
 {

@@ -3,7 +3,7 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Event.Events.Models;
+using Events.Models;
 
 namespace Event.Data.Seed;
 

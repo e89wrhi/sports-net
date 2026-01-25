@@ -1,4 +1,4 @@
-﻿namespace Event.Events.Enums;
+﻿namespace Events.Enums;
 
 public enum EventType
 {

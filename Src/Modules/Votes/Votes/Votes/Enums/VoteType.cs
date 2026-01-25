@@ -1,6 +1,6 @@
 ﻿using System.Security.AccessControl;
 
-namespace Vote.Votes.Enums;
+namespace Vote.Enums;
 
 public enum VoteType
 {

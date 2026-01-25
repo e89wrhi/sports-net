@@ -1,6 +1,6 @@
-﻿using Event.Events.Exeptions;
+﻿using Events.Exeptions;
 
-namespace Event.Events.ValueObjects;
+namespace Events.ValueObjects;
 
 public record Time
 {

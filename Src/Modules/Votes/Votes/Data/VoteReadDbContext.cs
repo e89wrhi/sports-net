@@ -2,7 +2,7 @@
 using Humanizer;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using Vote.Votes.Models;
+using Vote.Models;
 
 namespace Vote.Data;
 

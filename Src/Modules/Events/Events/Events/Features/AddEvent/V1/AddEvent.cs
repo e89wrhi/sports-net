@@ -1,9 +1,9 @@
 ﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
 using Event.Data;
-using Event.Events.Enums;
-using Event.Events.Models;
-using Event.Events.ValueObjects;
+using Events.Enums;
+using Events.Models;
+using Events.ValueObjects;
 using FluentValidation;
 using Mapster;
 using MapsterMapper;
@@ -16,7 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Sport.Common.Core;
 using Sport.Common.Web;
 
-namespace Event.Events.Features.AddEvent.V1;
+namespace Events.Features.AddEvent.V1;
 
 public record AddEventCommand(
     Guid MatchId,

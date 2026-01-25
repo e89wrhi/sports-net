@@ -1,8 +1,8 @@
-﻿namespace Event.Events.Features.AddEvent.V1;
+﻿namespace Events.Features.AddEvent.V1;
 
 using Ardalis.GuardClauses;
 using Event.Data;
-using Event.Events.Models;
+using Events.Models;
 using MapsterMapper;
 using MediatR;
 using MongoDB.Driver;

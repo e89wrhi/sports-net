@@ -1,7 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using Duende.IdentityServer.EntityFramework.Entities;
 using Match.Data;
-using Match.Matches.Dtos;
+using Match.Dtos;
 using Mapster;
 using MapsterMapper;
 using MediatR;
@@ -16,7 +16,7 @@ using Sport.Common.Web;
 using Sport.Matchs.Exceptions;
 using FluentValidation;
 
-namespace Match.Matches.Features.GetMatch.V1;
+namespace Match.Features.GetMatch.V1;
 
 public record GetMatchById(Guid Id) : IQuery<GetMatchByIdResult>;
 

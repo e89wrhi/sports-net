@@ -1,5 +1,5 @@
 using Sport.Common.EFCore;
-using Match.Matches.Models;
+using Match.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 

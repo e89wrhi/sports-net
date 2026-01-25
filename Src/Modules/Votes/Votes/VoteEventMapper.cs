@@ -1,8 +1,8 @@
 ﻿using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
-using Vote.Votes.Features.AddVote.V1;
-using Vote.Votes.Features.DeleteVote.V1;
-using Vote.Votes.Models;
+using Vote.Features.AddVote.V1;
+using Vote.Features.DeleteVote.V1;
+using Vote.Models;
 
 namespace Vote;
 

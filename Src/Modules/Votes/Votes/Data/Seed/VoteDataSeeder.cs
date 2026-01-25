@@ -3,7 +3,7 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Vote.Votes.Models;
+using Vote.Models;
 
 namespace Vote.Data.Seed;
 

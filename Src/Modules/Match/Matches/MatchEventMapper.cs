@@ -1,8 +1,8 @@
-﻿using Match.Matches.Features.CreateMatch.V1;
-using Match.Matches.Features.DeleteMatch.V1;
-using Match.Matches.Features.UpdateMatch.V1;
-using Match.Matches.Features.UpdateMatchStat.V1;
-using Match.Matches.Models;
+﻿using Match.Features.CreateMatch.V1;
+using Match.Features.DeleteMatch.V1;
+using Match.Features.UpdateMatch.V1;
+using Match.Features.UpdateMatchStat.V1;
+using Match.Models;
 using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
 

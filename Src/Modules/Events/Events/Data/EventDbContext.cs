@@ -1,5 +1,5 @@
 using Sport.Common.EFCore;
-using Event.Events.Models;
+using Events.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 

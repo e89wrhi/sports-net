@@ -1,10 +1,10 @@
-﻿using Match.Matches.Models;
+﻿using Match.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Match.Data.Configurations;
 
-using Matches.ValueObjects;
+using Match.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;

@@ -1,6 +1,6 @@
-﻿using Event.Events.Features.AddEvent.V1;
-using Event.Events.Features.DeleteEvent.V1;
-using Event.Events.Models;
+﻿using Events.Features.AddEvent.V1;
+using Events.Features.DeleteEvent.V1;
+using Events.Models;
 using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
 
