@@ -18,4 +18,15 @@ message GetMatchByIdResult{
 
 message MatchResponse {
   string Id = 1;
+  string HomeTeam = 2;
+  string AwayTeam = 3;
+  int32 HomeTeamScore = 4;
+  int32 AwayTeamScore = 5;
+  string League = 6;
+  string Status = 7;
+  google.protobuf.Timestamp MatchTime = 8;
+  int32 EventsCount = 9;
+  int32 HomeVotesCount = 10;
+  int32 AwayVotesCount = 11;
+  int32 DrawVotesCount = 12;
 }

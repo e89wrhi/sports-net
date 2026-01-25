@@ -8,6 +8,7 @@ using Sport.Common.EFCore;
 using Sport.Common.Mapster;
 using Sport.Common.Mongo;
 using Sport.Common.Web;
+using Event.GrpcServer.Services;
 
 namespace Event.Extensions.Infrastructure;
 

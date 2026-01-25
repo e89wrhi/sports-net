@@ -18,4 +18,8 @@ message GetVoteByIdResult{
 
 message VoteResponse {
   string Id = 1;
+  string VoterId = 2;
+  string MatchId = 3;
+  string Type = 4;
+  google.protobuf.Timestamp VotedAt = 5;
 }

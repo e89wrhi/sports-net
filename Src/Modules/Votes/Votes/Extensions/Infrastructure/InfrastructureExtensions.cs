@@ -7,6 +7,7 @@ using Sport.Common.Mongo;
 using Sport.Common.Web;
 using Vote.Data;
 using Vote.Data.Seed;
+using Vote.GrpcServer.Services;
 
 namespace Vote.Extensions.Infrastructure;
 
