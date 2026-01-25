@@ -1,4 +1,6 @@
-﻿using Event.Events.Models;
+﻿using Event.Events.Features.AddEvent.V1;
+using Event.Events.Features.DeleteEvent.V1;
+using Event.Events.Models;
 using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
 
@@ -22,8 +24,9 @@ public sealed class EventEventMapper : IEventMapper
     {
         return @event switch
         {
-            EventCreatedDomainEvent e => new CreateEventMongo(),
-            EventDeletedDomainEvent e => new DeleteEventMongo(),
+            EventCreatedDomainEvent e => new AddEventMongo(e.Id, e.MatchId, e.Title, e.Time,
+            e.Type.ToString()),
+            EventDeletedDomainEvent e => new DeleteEventMongo(e.Id),
             _ => null
         };
     }

@@ -1,5 +1,7 @@
 ﻿using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
+using Vote.Votes.Features.AddVote.V1;
+using Vote.Votes.Features.DeleteVote.V1;
 using Vote.Votes.Models;
 
 namespace Vote;
@@ -22,8 +24,8 @@ public sealed class VoteEventMapper : IEventMapper
     {
         return @event switch
         {
-            VoteCreatedDomainEvent e => new CreateVoteMongo(),
-            VoteDeletedDomainEvent e => new DeleteVoteMongo(),
+            VoteCreatedDomainEvent e => new AddVoteMongo(e.Id, e.MatchId, e.VoterId, e.Type.ToString()),
+            VoteDeletedDomainEvent e => new DeleteVoteMongo(e.Id, e.MatchId, e.VoterId),
             _ => null
         };
     }

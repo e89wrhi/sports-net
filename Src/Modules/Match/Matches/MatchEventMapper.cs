@@ -1,4 +1,8 @@
-﻿using Match.Matches.Models;
+﻿using Match.Matches.Features.CreateMatch.V1;
+using Match.Matches.Features.DeleteMatch.V1;
+using Match.Matches.Features.UpdateMatch.V1;
+using Match.Matches.Features.UpdateMatchStat.V1;
+using Match.Matches.Models;
 using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
 
@@ -23,10 +27,12 @@ public sealed class MatchEventMapper : IEventMapper
     {
         return @event switch
         {
-            MatchCreatedDomainEvent e => new CreateMatchMongo(),
-            MatchUpdatedDomainEvent e => new UpdateMatchMongo(),
-            MatchDeletedDomainEvent e => new DeleteMatchMongo(),
-            MatchScoreUpdatedDomainEvent e => new CreateAircraftMongo(),
+            MatchCreatedDomainEvent e => new CreateMatchMongo(e.Id, e.HomeTeam, e.AwayTeam,
+             e.League.ToString(), e.Status.ToString(), e.MatchTime),
+            MatchUpdatedDomainEvent e => new UpdateMatchMongo(e.Id, e.HomeTeam, e.AwayTeam,
+             e.League.ToString(), e.Status.ToString(), e.MatchTime),
+            MatchDeletedDomainEvent e => new DeleteMatchMongo(e.Id),
+            MatchScoreUpdatedDomainEvent e => new UpdateMatchStatMongo(e.Id, e.HomeTeamScore, e.AwayTeamScore),
             _ => null
         };
     }

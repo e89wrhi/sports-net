@@ -33,7 +33,8 @@ public record MatchModel : Aggregate<MatchId>
             Version = 1,
         };
 
-        var @event = new MatchCreatedDomainEvent(item.Id);
+        var @event = new MatchCreatedDomainEvent(item.Id, homeTeam, awayTeam, matchLeague,
+            matchStatus, matchTime);
         item.AddDomainEvent(@event);
         return item;
     }
@@ -48,7 +49,8 @@ public record MatchModel : Aggregate<MatchId>
         MatchTime = matchTime;
         Version++;
         LastModified = DateTime.UtcNow;
-        AddDomainEvent(new MatchUpdatedDomainEvent(Id));
+        AddDomainEvent(new MatchUpdatedDomainEvent(Id, homeTeam, awayTeam, matchLeague, matchStatus,
+            matchTime));
     }
 
     public void UpdateScore(Score homeTeamScore, Score awayTeamScore)
@@ -57,7 +59,7 @@ public record MatchModel : Aggregate<MatchId>
         AwayTeamScore = awayTeamScore;
         Version++;
         LastModified = DateTime.UtcNow;
-        AddDomainEvent(new MatchScoreUpdatedDomainEvent(Id));
+        AddDomainEvent(new MatchScoreUpdatedDomainEvent(Id, homeTeamScore, awayTeamScore));
     }
 
     public void UpdateVotesCount(int homeVotesCount, int awayVotesCount, int drawVotesCount)
@@ -80,7 +82,9 @@ public record MatchModel : Aggregate<MatchId>
     }
 }
 
-public record MatchCreatedDomainEvent(MatchId Id) : IDomainEvent;
-public record MatchUpdatedDomainEvent(MatchId Id) : IDomainEvent;
-public record MatchScoreUpdatedDomainEvent(MatchId Id) : IDomainEvent;
+public record MatchCreatedDomainEvent(MatchId Id, HomeTeam HomeTeam, AwayTeam AwayTeam,
+    MatchLeague League, MatchStatus Status, DateTime MatchTime) : IDomainEvent;
+public record MatchUpdatedDomainEvent(MatchId Id, HomeTeam HomeTeam, AwayTeam AwayTeam,
+    MatchLeague League, MatchStatus Status, DateTime MatchTime) : IDomainEvent;
+public record MatchScoreUpdatedDomainEvent(MatchId Id, Score HomeTeamScore, Score AwayTeamScore) : IDomainEvent;
 public record MatchDeletedDomainEvent(MatchId Id) : IDomainEvent;
