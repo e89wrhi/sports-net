@@ -24,7 +24,7 @@ public static class InfrastructureExtensions
         builder.AddCustomDbContext<EventDbContext>(nameof(Event));
         builder.Services.AddScoped<IDataSeeder, EventDataSeeder>();
         builder.AddMongoDbContext<EventReadDbContext>();
-
+        
         builder.Services.AddCustomMediatR();
 
         return builder;
