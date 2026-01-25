@@ -83,7 +83,8 @@ internal class DeleteMatchHandler : IRequestHandler<DeleteMatchCommand, DeleteMa
             throw new MatchNotFoundException(request.MatchId);
         }
 
-        _dbContext.Matches.Remove(item);
+        item.Delete();
+        _dbContext.Matches.Update(item);
         await _dbContext.SaveChangesAsync(cancellationToken);
         return new DeleteMatchCommandResponse(request.MatchId);
     }

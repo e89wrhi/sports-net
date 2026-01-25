@@ -15,5 +15,5 @@ public class MatchReadModel
     public required int HomeVotesCount { get; init; }
     public required int AwayVotesCount { get; init; }
     public required int DrawVotesCount { get; init; }
-
+    public required bool IsDeleted { get; init; }
 }
