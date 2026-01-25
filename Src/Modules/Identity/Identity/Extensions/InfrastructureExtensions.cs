@@ -4,9 +4,9 @@ using Sport.Common.Web;
 using FluentValidation;
 using Identity.Data;
 using Identity.Data.Seed;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Identity.Extensions.Infrastructure;
 

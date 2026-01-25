@@ -1,60 +1,85 @@
-﻿using Match.Matches.Data;
+﻿using Ardalis.GuardClauses;
+using Duende.IdentityServer.EntityFramework.Entities;
+using Match.Data;
 using Match.Matches.Dtos;
+using Mapster;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Sport.Common.Core.CQRS;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using Sport.Common.Caching;
+using Sport.Common.Core;
 using Sport.Common.Web;
+using Sport.Matchs.Exceptions;
 
 namespace Match.Matches.Features.GetMatches.V1;
 
-public record GetMatchesQuery() : IQuery<MatchesDto>;
+public record GetMatchs : IQuery<GetMatchsResult>, ICacheRequest
+{
+    public string CacheKey => "GetMatchs";
+    public DateTime? AbsoluteExpirationRelativeToNow => DateTime.Now.AddHours(1);
+}
 
-public class GetMatchesEndpoint : IMinimalEndpoint
+public record GetMatchsResult(IEnumerable<MatchDto> MatchDtos);
+
+public record GetMatchsResponseDto(IEnumerable<MatchDto> MatchDtos);
+
+public class GetMatchsEndpoint : IMinimalEndpoint
 {
     public IEndpointRouteBuilder MapEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapGet("/api/v1/matches", async (ISender sender) =>
-        {
-            var result = await sender.Send(new GetMatchesQuery());
-            return Results.Ok(result);
-        })
-        .WithName("GetMatches")
-        .WithTags("Matches")
-        .Produces<MatchesDto>(StatusCodes.Status200OK);
+        builder.MapGet($"{EndpointConfig.BaseApiPath}/match/get-matches",
+                async (IMediator mediator, CancellationToken cancellationToken) =>
+                {
+                    var result = await mediator.Send(new GetMatchs(), cancellationToken);
+
+                    var response = result.Adapt<GetMatchsResponseDto>();
+
+                    return Results.Ok(response);
+                })
+            .RequireAuthorization(nameof(ApiScope))
+            .WithName("GetMatchs")
+            .WithApiVersionSet(builder.NewApiVersionSet("Match").Build())
+            .Produces<GetMatchsResponseDto>()
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .WithSummary("Get Matchs")
+            .WithDescription("Get Matchs")
+            .WithOpenApi()
+            .HasApiVersion(1.0);
 
         return builder;
     }
 }
 
-public class GetMatchesHandler : IQueryHandler<GetMatchesQuery, MatchesDto>
+internal class GetMatchsHandler : IQueryHandler<GetMatchs, GetMatchsResult>
 {
-    private readonly IMatchRepository _repository;
+    private readonly IMapper _mapper;
+    private readonly MatchReadDbContext _matchReadDbContext;
 
-    public GetMatchesHandler(IMatchRepository repository)
+    public GetMatchsHandler(IMapper mapper, MatchReadDbContext matchReadDbContext)
     {
-        _repository = repository;
+        _mapper = mapper;
+        _matchReadDbContext = matchReadDbContext;
     }
 
-    public async Task<MatchesDto> Handle(GetMatchesQuery request, CancellationToken cancellationToken)
+    public async Task<GetMatchsResult> Handle(GetMatchs request,
+        CancellationToken cancellationToken)
     {
-        var matches = await _repository.GetAllAsync(cancellationToken);
+        Guard.Against.Null(request, nameof(request));
 
-        var dtos = matches.Select(match => new MatchDto(
-            match.Id.Value,
-            match.HomeTeam.Value,
-            match.AwayTeam.Value,
-            match.HomeTeamScore?.Value ?? 0,
-            match.AwayTeamScore?.Value ?? 0,
-            match.League,
-            match.Status,
-            match.MatchTime,
-            match.EventsCount,
-            match.HomeVotesCount,
-            match.AwayVotesCount,
-            match.DrawVotesCount));
+        var match = (await _matchReadDbContext.Match.AsQueryable().ToListAsync(cancellationToken))
+            .Where(x => !x.IsDeleted);
 
-        return new MatchesDto(dtos);
+        if (!match.Any())
+        {
+            throw new MatchNotFoundException(Guid.Empty);
+        }
+
+        var matchDtos = _mapper.Map<IEnumerable<MatchDto>>(match);
+
+        return new GetMatchsResult(matchDtos);
     }
 }

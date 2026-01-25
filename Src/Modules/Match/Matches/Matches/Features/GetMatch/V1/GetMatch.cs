@@ -1,66 +1,90 @@
-﻿using Match.Matches.Data;
+﻿using Ardalis.GuardClauses;
+using Duende.IdentityServer.EntityFramework.Entities;
+using Match.Data;
 using Match.Matches.Dtos;
-using Match.Matches.ValueObjects;
+using Mapster;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Sport.Common.Core.CQRS;
+using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using Sport.Common.Caching;
+using Sport.Common.Core;
 using Sport.Common.Web;
-using Sport.Common.Exception;
+using Sport.Matchs.Exceptions;
+using FluentValidation;
 
 namespace Match.Matches.Features.GetMatch.V1;
 
-public record GetMatchQuery(Guid Id) : IQuery<MatchDto>;
+public record GetMatchById(Guid Id) : IQuery<GetMatchByIdResult>;
 
-public class GetMatchEndpoint : IMinimalEndpoint
+public record GetMatchByIdResult(MatchDto MatchDto);
+
+public record GetMatchByIdResponseDto(MatchDto MatchDto);
+
+public class GetMatchByIdEndpoint : IMinimalEndpoint
 {
     public IEndpointRouteBuilder MapEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapGet("/api/v1/matches/{id}", async (Guid id, ISender sender) =>
-        {
-            var result = await sender.Send(new GetMatchQuery(id));
-            return Results.Ok(result);
-        })
-        .WithName("GetMatch")
-        .WithTags("Matches")
-        .Produces<MatchDto>(StatusCodes.Status200OK)
-        .ProducesProblem(StatusCodes.Status404NotFound);
+        builder.MapGet($"{EndpointConfig.BaseApiPath}/match/{{id}}",
+                async (Guid id, IMediator mediator, IMapper mapper, CancellationToken cancellationToken) =>
+                {
+                    var result = await mediator.Send(new GetMatchById(id), cancellationToken);
+
+                    var response = result.Adapt<GetMatchByIdResponseDto>();
+
+                    return Results.Ok(response);
+                })
+            .RequireAuthorization(nameof(ApiScope))
+            .WithName("GetMatchById")
+            .WithApiVersionSet(builder.NewApiVersionSet("Match").Build())
+            .Produces<GetMatchByIdResponseDto>()
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .WithSummary("Get Match By Id")
+            .WithDescription("Get Match By Id")
+            .WithOpenApi()
+            .HasApiVersion(1.0);
 
         return builder;
     }
 }
 
-public class GetMatchHandler : IQueryHandler<GetMatchQuery, MatchDto>
+public class GetMatchByIdValidator : AbstractValidator<GetMatchById>
 {
-    private readonly IMatchRepository _repository;
-
-    public GetMatchHandler(IMatchRepository repository)
+    public GetMatchByIdValidator()
     {
-        _repository = repository;
+        RuleFor(x => x.Id).NotNull().WithMessage("Id is required!");
+    }
+}
+
+internal class GetMatchByIdHandler : IQueryHandler<GetMatchById, GetMatchByIdResult>
+{
+    private readonly IMapper _mapper;
+    private readonly MatchReadDbContext _matchReadDbContext;
+
+    public GetMatchByIdHandler(IMapper mapper, MatchReadDbContext matchReadDbContext)
+    {
+        _mapper = mapper;
+        _matchReadDbContext = matchReadDbContext;
     }
 
-    public async Task<MatchDto> Handle(GetMatchQuery request, CancellationToken cancellationToken)
+    public async Task<GetMatchByIdResult> Handle(GetMatchById request, CancellationToken cancellationToken)
     {
-        var match = await _repository.FindByIdAsync(MatchId.Of(request.Id), cancellationToken);
+        Guard.Against.Null(request, nameof(request));
 
-        if (match == null)
+        var match = await _matchReadDbContext.Match.AsQueryable().SingleOrDefaultAsync(
+            x => x.Id == request.Id &&
+                             !x.IsDeleted, cancellationToken);
+
+        if (match is null)
         {
-            throw new NotFoundException($"Match with id {request.Id} not found.");
+            throw new MatchNotFoundException(request.Id);
         }
 
-        return new MatchDto(
-            match.Id.Value,
-            match.HomeTeam.Value,
-            match.AwayTeam.Value,
-            match.HomeTeamScore?.Value ?? 0,
-            match.AwayTeamScore?.Value ?? 0,
-            match.League,
-            match.Status,
-            match.MatchTime,
-            match.EventsCount,
-            match.HomeVotesCount,
-            match.AwayVotesCount,
-            match.DrawVotesCount);
+        var matchDto = _mapper.Map<MatchDto>(match);
+
+        return new GetMatchByIdResult(matchDto);
     }
 }
