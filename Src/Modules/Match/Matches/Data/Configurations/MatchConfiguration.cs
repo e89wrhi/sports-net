@@ -19,7 +19,7 @@ public class MatchConfiguration : IEntityTypeConfiguration<MatchModel>
 
         builder.HasKey(r => r.Id);
         builder.Property(r => r.Id).ValueGeneratedNever()
-            .HasConversion<Guid>(aircraftId => aircraftId.Value, dbId => MatchId.Of(dbId));
+            .HasConversion<Guid>(itemId => itemId.Value, dbId => MatchId.Of(dbId));
 
         builder.Property(r => r.Version).IsConcurrencyToken();
 

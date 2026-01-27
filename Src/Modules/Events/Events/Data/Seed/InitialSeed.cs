@@ -93,4 +93,4 @@ public static class InitialData
                 EventType.Foul)
         };
     }
-}
+} 

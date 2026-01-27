@@ -19,7 +19,7 @@ public class EventConfiguration : IEntityTypeConfiguration<EventModel>
 
         builder.HasKey(r => r.Id);
         builder.Property(r => r.Id).ValueGeneratedNever()
-            .HasConversion<Guid>(aircraftId => aircraftId.Value, dbId => EventId.Of(dbId));
+            .HasConversion<Guid>(itemId => itemId.Value, dbId => EventId.Of(dbId));
 
         builder.Property(r => r.Version).IsConcurrencyToken();
 

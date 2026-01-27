@@ -19,7 +19,7 @@ public class VoteConfiguration : IEntityTypeConfiguration<VoteModel>
 
         builder.HasKey(r => r.Id);
         builder.Property(r => r.Id).ValueGeneratedNever()
-            .HasConversion<Guid>(aircraftId => aircraftId.Value, dbId => VoteId.Of(dbId));
+            .HasConversion<Guid>(itemId => itemId.Value, dbId => VoteId.Of(dbId));
 
         builder.Property(r => r.Version).IsConcurrencyToken();
 
