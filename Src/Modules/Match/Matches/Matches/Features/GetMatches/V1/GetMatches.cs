@@ -14,11 +14,14 @@ using Sport.Common.Caching;
 using Sport.Common.Core;
 using Sport.Common.Web;
 using Sport.Matchs.Exceptions;
+using Match.Enums;
 
 namespace Match.Features.GetMatches.V1;
 
 public record GetMatchs : IQuery<GetMatchsResult>, ICacheRequest
 {
+    public MatchLeague League;
+    public MatchStatus Status;
     public string CacheKey => "GetMatchs";
     public DateTime? AbsoluteExpirationRelativeToNow => DateTime.Now.AddHours(1);
 }
@@ -31,7 +34,7 @@ public class GetMatchsEndpoint : IMinimalEndpoint
 {
     public IEndpointRouteBuilder MapEndpoint(IEndpointRouteBuilder builder)
     {
-        builder.MapGet($"{EndpointConfig.BaseApiPath}/match/get-matches",
+        builder.MapGet($"{EndpointConfig.BaseApiPath}/match/get-matches?leagues={{league}}&status={{status}}",
                 async (IMediator mediator, CancellationToken cancellationToken) =>
                 {
                     var result = await mediator.Send(new GetMatchs(), cancellationToken);
