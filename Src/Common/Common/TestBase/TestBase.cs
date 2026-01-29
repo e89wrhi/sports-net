@@ -128,7 +128,7 @@ where TEntryPoint : class
                                        {
                                            policy.AddAuthenticationSchemes(FakeJwtBearerDefaults.AuthenticationScheme);
                                            policy.RequireAuthenticatedUser();
-                                           policy.RequireClaim("scope", "item-api"); // Test-specific scope
+                                           policy.RequireClaim("scope", "sport-api"); // Test-specific scope
                                        });
                                    });
                         });
