@@ -344,13 +344,16 @@ where TEntryPoint : class
                     "PostgresOptions:ConnectionString",
                     PostgresTestcontainer.GetConnectionString()),
                 new(
-                    "PostgresOptions:ConnectionString:Flight",
+                    "PostgresOptions:ConnectionString:Event",
                     PostgresTestcontainer.GetConnectionString()),
                  new(
                     "PostgresOptions:ConnectionString:Identity",
                     PostgresTestcontainer.GetConnectionString()),
                  new(
-                    "PostgresOptions:ConnectionString:Passenger",
+                    "PostgresOptions:ConnectionString:Match",
+                    PostgresTestcontainer.GetConnectionString()),
+                new(
+                    "PostgresOptions:ConnectionString:Vote",
                     PostgresTestcontainer.GetConnectionString()),
                 new(
                     "PersistMessageOptions:ConnectionString",
