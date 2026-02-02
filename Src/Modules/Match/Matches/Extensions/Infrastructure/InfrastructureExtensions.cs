@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Sport.Common.EFCore;
 using Sport.Common.Mapster;
-using Sport.Common.Mongo;
 using Sport.Common.Web;
 
 namespace Match.Extensions.Infrastructure;
@@ -22,7 +21,6 @@ public static class InfrastructureExtensions
         builder.Services.AddCustomMapster(typeof(MatchRoot).Assembly);
         builder.AddCustomDbContext<MatchDbContext>(nameof(Match));
         builder.Services.AddScoped<IDataSeeder, MatchDataSeeder>();
-        builder.AddMongoDbContext<MatchReadDbContext>();
 
         builder.Services.AddCustomMediatR();
 

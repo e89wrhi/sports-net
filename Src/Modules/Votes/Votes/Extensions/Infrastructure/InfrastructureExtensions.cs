@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Sport.Common.EFCore;
 using Sport.Common.Mapster;
-using Sport.Common.Mongo;
 using Sport.Common.Web;
 using Vote.Data;
 using Vote.Data.Seed;
@@ -22,7 +21,6 @@ public static class InfrastructureExtensions
         builder.Services.AddCustomMapster(typeof(VoteRoot).Assembly);
         builder.AddCustomDbContext<VoteDbContext>(nameof(Vote));
         builder.Services.AddScoped<IDataSeeder, VoteDataSeeder>();
-        builder.AddMongoDbContext<VoteReadDbContext>();
 
         builder.Services.AddCustomMediatR();
 

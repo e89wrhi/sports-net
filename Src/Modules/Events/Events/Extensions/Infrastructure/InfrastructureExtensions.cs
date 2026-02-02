@@ -1,14 +1,12 @@
-﻿using Event.Extensions.Infrastructure;
-using Event.Data;
+﻿using Event.Data;
 using Event.Data.Seed;
+using Event.GrpcServer.Services;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Sport.Common.EFCore;
 using Sport.Common.Mapster;
-using Sport.Common.Mongo;
 using Sport.Common.Web;
-using Event.GrpcServer.Services;
 
 namespace Event.Extensions.Infrastructure;
 
@@ -23,7 +21,6 @@ public static class InfrastructureExtensions
         builder.Services.AddCustomMapster(typeof(EventRoot).Assembly);
         builder.AddCustomDbContext<EventDbContext>(nameof(Event));
         builder.Services.AddScoped<IDataSeeder, EventDataSeeder>();
-        builder.AddMongoDbContext<EventReadDbContext>();
         
         builder.Services.AddCustomMediatR();
 
