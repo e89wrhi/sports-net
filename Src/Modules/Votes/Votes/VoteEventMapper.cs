@@ -28,4 +28,4 @@ public sealed class VoteEventMapper : IEventMapper
             _ => null
         };
     }
-}
+} 

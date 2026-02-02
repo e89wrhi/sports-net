@@ -60,12 +60,12 @@ public class GetMatchsEndpoint : IMinimalEndpoint
 internal class GetMatchsHandler : IQueryHandler<GetMatchs, GetMatchsResult>
 {
     private readonly IMapper _mapper;
-    private readonly MatchReadDbContext _matchReadDbContext;
+    private readonly MatchDbContext _matchDbContext;
 
-    public GetMatchsHandler(IMapper mapper, MatchReadDbContext matchReadDbContext)
+    public GetMatchsHandler(IMapper mapper, MatchDbContext matchDbContext)
     {
         _mapper = mapper;
-        _matchReadDbContext = matchReadDbContext;
+        _matchDbContext = matchDbContext;
     }
 
     public async Task<GetMatchsResult> Handle(GetMatchs request,
@@ -73,7 +73,7 @@ internal class GetMatchsHandler : IQueryHandler<GetMatchs, GetMatchsResult>
     {
         Guard.Against.Null(request, nameof(request));
 
-        var match = (await _matchReadDbContext.Match.AsQueryable().ToListAsync(cancellationToken))
+        var match = (await _matchDbContext.Match.AsQueryable().ToListAsync(cancellationToken))
             .Where(x => !x.IsDeleted);
 
         if (!match.Any())

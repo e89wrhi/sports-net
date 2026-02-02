@@ -1,16 +1,10 @@
-﻿using Sport.Common.EFCore;
-using MapsterMapper;
-using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
-using Vote.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Sport.Common.EFCore;
 
 namespace Vote.Data.Seed;
 
 public class VoteDataSeeder(
-    VoteDbContext voteDbContext,
-    VoteReadDbContext voteReadDbContext,
-    IMapper mapper
+    VoteDbContext voteDbContext
 ) : IDataSeeder
 {
     public async Task SeedAllAsync()
@@ -25,15 +19,10 @@ public class VoteDataSeeder(
 
     private async Task SeedVoteAsync()
     {
-        if (!await EntityFrameworkQueryableExtensions.AnyAsync(voteDbContext.Votes))
+        if (!await voteDbContext.Votes.AnyAsync())
         {
             await voteDbContext.Votes.AddRangeAsync(InitialData.Votes);
             await voteDbContext.SaveChangesAsync();
-
-            if (!await MongoQueryable.AnyAsync(voteReadDbContext.Vote.AsQueryable()))
-            {
-                await voteReadDbContext.Vote.InsertManyAsync(mapper.Map<List<VoteReadModel>>(InitialData.Votes));
-            }
         }
     }
 }

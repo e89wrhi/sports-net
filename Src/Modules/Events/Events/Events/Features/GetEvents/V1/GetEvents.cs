@@ -58,12 +58,12 @@ public class GetEventsEndpoint : IMinimalEndpoint
 internal class GetEventsHandler : IQueryHandler<GetEvents, GetEventsResult>
 {
     private readonly IMapper _mapper;
-    private readonly EventReadDbContext _eventReadDbContext;
+    private readonly EventDbContext _eventDbContext;
 
-    public GetEventsHandler(IMapper mapper, EventReadDbContext eventReadDbContext)
+    public GetEventsHandler(IMapper mapper, EventDbContext eventDbContext)
     {
         _mapper = mapper;
-        _eventReadDbContext = eventReadDbContext;
+        _eventDbContext = eventDbContext;
     }
 
     public async Task<GetEventsResult> Handle(GetEvents request,
@@ -71,7 +71,7 @@ internal class GetEventsHandler : IQueryHandler<GetEvents, GetEventsResult>
     {
         Guard.Against.Null(request, nameof(request));
 
-        var @event = (await _eventReadDbContext.Event.AsQueryable().ToListAsync(cancellationToken))
+        var @event = (await _eventDbContext.Event.AsQueryable().ToListAsync(cancellationToken))
             .Where(i => i.MatchId == request.MatchId);
 
         if (!@event.Any())

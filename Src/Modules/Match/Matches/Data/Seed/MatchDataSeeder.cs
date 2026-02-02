@@ -1,16 +1,10 @@
-﻿using Sport.Common.EFCore;
-using MapsterMapper;
-using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
-using Match.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Sport.Common.EFCore;
 
 namespace Match.Data.Seed;
 
 public class MatchDataSeeder(
-    MatchDbContext matchDbContext,
-    MatchReadDbContext matchReadDbContext,
-    IMapper mapper
+    MatchDbContext matchDbContext
 ) : IDataSeeder
 {
     public async Task SeedAllAsync()
@@ -25,15 +19,10 @@ public class MatchDataSeeder(
 
     private async Task SeedMatchAsync()
     {
-        if (!await EntityFrameworkQueryableExtensions.AnyAsync(matchDbContext.Matches))
+        if (!await matchDbContext.Matches.AnyAsync())
         {
             await matchDbContext.Matches.AddRangeAsync(InitialData.Matchs);
             await matchDbContext.SaveChangesAsync();
-
-            if (!await MongoQueryable.AnyAsync(matchReadDbContext.Match.AsQueryable()))
-            {
-                await matchReadDbContext.Match.InsertManyAsync(mapper.Map<List<MatchReadModel>>(InitialData.Matchs));
-            }
         }
     }
 } 

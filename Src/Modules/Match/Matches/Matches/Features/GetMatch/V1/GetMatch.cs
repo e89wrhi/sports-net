@@ -62,19 +62,19 @@ public class GetMatchByIdValidator : AbstractValidator<GetMatchById>
 internal class GetMatchByIdHandler : IQueryHandler<GetMatchById, GetMatchByIdResult>
 {
     private readonly IMapper _mapper;
-    private readonly MatchReadDbContext _matchReadDbContext;
+    private readonly MatchDbContext _matchDbContext;
 
-    public GetMatchByIdHandler(IMapper mapper, MatchReadDbContext matchReadDbContext)
+    public GetMatchByIdHandler(IMapper mapper, MatchDbContext matchDbContext)
     {
         _mapper = mapper;
-        _matchReadDbContext = matchReadDbContext;
+        _matchDbContext = matchDbContext;
     }
 
     public async Task<GetMatchByIdResult> Handle(GetMatchById request, CancellationToken cancellationToken)
     {
         Guard.Against.Null(request, nameof(request));
 
-        var match = await _matchReadDbContext.Match.AsQueryable().SingleOrDefaultAsync(
+        var match = await _matchDbContext.Match.AsQueryable().SingleOrDefaultAsync(
             x => x.Id == request.Id &&
                              !x.IsDeleted, cancellationToken);
 

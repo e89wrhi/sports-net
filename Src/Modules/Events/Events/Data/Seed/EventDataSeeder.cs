@@ -1,16 +1,11 @@
-﻿using Sport.Common.EFCore;
-using MapsterMapper;
+﻿using Events.Data.Seed;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
-using Events.Models;
+using Sport.Common.EFCore;
 
 namespace Event.Data.Seed;
 
 public class EventDataSeeder(
-    EventDbContext eventDbContext,
-    EventReadDbContext eventReadDbContext,
-    IMapper mapper
+    EventDbContext eventDbContext
 ) : IDataSeeder
 {
     public async Task SeedAllAsync()
@@ -25,15 +20,10 @@ public class EventDataSeeder(
 
     private async Task SeedEventAsync()
     {
-        if (!await EntityFrameworkQueryableExtensions.AnyAsync(eventDbContext.Events))
+        if (!await eventDbContext.Events.AnyAsync())
         {
             await eventDbContext.Events.AddRangeAsync(InitialData.Events);
             await eventDbContext.SaveChangesAsync();
-
-            if (!await MongoQueryable.AnyAsync(eventReadDbContext.Event.AsQueryable()))
-            {
-                await eventReadDbContext.Event.InsertManyAsync(mapper.Map<List<EventReadModel>>(InitialData.Events));
-            }
         }
     }
 }
