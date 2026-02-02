@@ -1,6 +1,4 @@
-﻿using Events.Features.AddEvent.V1;
-using Events.Features.DeleteEvent.V1;
-using Events.Models;
+﻿using Events.Models;
 using Sport.Common.Contracts.EventBus.Messages;
 using Sport.Common.Core;
 
@@ -14,6 +12,7 @@ public sealed class EventEventMapper : IEventMapper
     {
         return @event switch
         {
+            // map to integration event here(if needed)
             EventCreatedDomainEvent e => new EventCreated(e.Id),
             EventDeletedDomainEvent e => new EventDeleted(e.Id),
             _ => null
@@ -24,9 +23,8 @@ public sealed class EventEventMapper : IEventMapper
     {
         return @event switch
         {
-            EventCreatedDomainEvent e => new AddEventMongo(e.Id, e.MatchId, e.Title, e.Time,
-            e.Type.ToString()),
-            EventDeletedDomainEvent e => new DeleteEventMongo(e.Id),
+            // map domain events to internal commands to handle changes
+            // DomainEvent e => new MethodName(e.SessionId.Value),
             _ => null
         };
     }
