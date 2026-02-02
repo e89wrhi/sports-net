@@ -73,7 +73,7 @@ internal class GetMatchsHandler : IQueryHandler<GetMatchs, GetMatchsResult>
     {
         Guard.Against.Null(request, nameof(request));
 
-        var match = (await _matchDbContext.Match.AsQueryable().ToListAsync(cancellationToken))
+        var match = (await _matchDbContext.Matches.AsQueryable().ToListAsync(cancellationToken))
             .Where(x => !x.IsDeleted);
 
         if (!match.Any())

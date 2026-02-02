@@ -71,7 +71,7 @@ internal class GetEventsHandler : IQueryHandler<GetEvents, GetEventsResult>
     {
         Guard.Against.Null(request, nameof(request));
 
-        var @event = (await _eventDbContext.Event.AsQueryable().ToListAsync(cancellationToken))
+        var @event = (await _eventDbContext.Events.AsQueryable().ToListAsync(cancellationToken))
             .Where(i => i.MatchId == request.MatchId);
 
         if (!@event.Any())

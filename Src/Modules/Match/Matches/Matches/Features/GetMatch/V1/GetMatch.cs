@@ -74,7 +74,7 @@ internal class GetMatchByIdHandler : IQueryHandler<GetMatchById, GetMatchByIdRes
     {
         Guard.Against.Null(request, nameof(request));
 
-        var match = await _matchDbContext.Match.AsQueryable().SingleOrDefaultAsync(
+        var match = await _matchDbContext.Matches.AsQueryable().SingleOrDefaultAsync(
             x => x.Id == request.Id &&
                              !x.IsDeleted, cancellationToken);
 
