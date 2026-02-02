@@ -24,9 +24,6 @@ public class VoteGrpcServices : VoteGrpcService.VoteGrpcServiceBase
             Guid.Parse(request.VoterId),
             (VoteType)request.Type));
 
-        return new AddVoteResponse
-        {
-            Id = result.Id.ToString()
-        };
+        return new AddVoteResponse { Id = result.Id.ToString() };
     }
 }

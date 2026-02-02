@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Event;
 using Match;
 using Vote;
+using Sport.Common.BaseExceptions;
+using Sport.Common.Problems;
 
 namespace Api.Extensions;
 

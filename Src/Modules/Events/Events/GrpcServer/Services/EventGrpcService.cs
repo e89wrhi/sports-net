@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using Grpc.Core;
 using MediatR;
-using @event;
+using Event;
 using Events.Features.GetEvents.V1;
+using Events.Dtos;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Event.GrpcServer.Services;
 
@@ -21,15 +23,15 @@ public class EventGrpcServices : EventGrpcService.EventGrpcServiceBase
         var result = await _mediator.Send(new GetEvents { MatchId = Guid.Parse(request.MatchId) });
 
         var response = new GetEventsResult();
-        foreach (var eventDto in result.EventDtos)
+        foreach (var dto in result.EventDtos)
         {
             response.EventDtos.Add(new EventResponse
             {
-                Id = eventDto.Id.ToString(),
-                MatchId = eventDto.MatchId.ToString(),
-                Title = eventDto.Title,
-                Time = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(eventDto.Time.ToUniversalTime()),
-                Type = eventDto.Type.ToString()
+                Id = dto.Id.ToString(),
+                MatchId = dto.MatchId.ToString(),
+                Title = dto.Title,
+                Time = Timestamp.FromDateTime(dto.Time.ToUniversalTime()),
+                Type = dto.Type.ToString()
             });
         }
 

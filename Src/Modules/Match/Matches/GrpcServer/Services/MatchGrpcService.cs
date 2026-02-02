@@ -2,11 +2,12 @@
 using Grpc.Core;
 using Mapster;
 using MediatR;
-using match;
+using Match;
 using Match.Features.GetMatch.V1;
 
 namespace Match.GrpcServer.Services;
 
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using System;
 
@@ -23,7 +24,7 @@ public class MatchGrpcServices : MatchGrpcService.MatchGrpcServiceBase
     {
         var result = await _mediator.Send(new GetMatchById(Guid.Parse(request.Id)));
 
-        return new GetMatchByIdResult
+        var response = new GetMatchByIdResult
         {
             MatchDto = new MatchResponse
             {
@@ -34,13 +35,14 @@ public class MatchGrpcServices : MatchGrpcService.MatchGrpcServiceBase
                 AwayTeamScore = result.MatchDto.AwayTeamScore,
                 League = result.MatchDto.League.ToString(),
                 Status = result.MatchDto.Status.ToString(),
-                MatchTime = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(result.MatchDto.MatchTime.ToUniversalTime()),
+                MatchTime = Timestamp.FromDateTime(result.MatchDto.MatchTime.ToUniversalTime()),
                 EventsCount = result.MatchDto.EventsCount,
                 HomeVotesCount = result.MatchDto.HomeVotesCount,
                 AwayVotesCount = result.MatchDto.AwayVotesCount,
                 DrawVotesCount = result.MatchDto.DrawVotesCount
             }
         };
-    }
 
+        return response;
+    }
 }

@@ -15,7 +15,7 @@ public class MatchConfiguration : IEntityTypeConfiguration<MatchModel>
     public void Configure(EntityTypeBuilder<MatchModel> builder)
     {
 
-        builder.ToTable(nameof(MatchModel));
+        builder.ToTable("matches");
 
         builder.HasKey(r => r.Id);
         builder.Property(r => r.Id).ValueGeneratedNever()
@@ -74,17 +74,17 @@ public class MatchConfiguration : IEntityTypeConfiguration<MatchModel>
         builder.Property(x => x.DrawVotesCount);
 
         builder.Property(x => x.Status)
-            .HasDefaultValue(Matches.Enums.MatchStatus.Upcoming)
+            .HasDefaultValue(Match.Enums.MatchStatus.Upcoming)
             .HasConversion(
                 x => x.ToString(),
-                x => (Matches.Enums.MatchStatus)Enum.Parse(typeof(Matches.Enums.MatchStatus), x));
+                x => (Match.Enums.MatchStatus)Enum.Parse(typeof(Match.Enums.MatchStatus), x));
 
 
         builder.Property(x => x.League)
-            .HasDefaultValue(Matches.Enums.MatchLeague.PremierLeague)
+            .HasDefaultValue(Match.Enums.MatchLeague.PremierLeague)
             .HasConversion(
                 x => x.ToString(),
-                x => (Matches.Enums.MatchLeague)Enum.Parse(typeof(Matches.Enums.MatchLeague), x));
+                x => (Match.Enums.MatchLeague)Enum.Parse(typeof(Match.Enums.MatchLeague), x));
 
     }
 }

@@ -15,7 +15,7 @@ public class EventConfiguration : IEntityTypeConfiguration<EventModel>
     public void Configure(EntityTypeBuilder<EventModel> builder)
     {
 
-        builder.ToTable(nameof(EventModel));
+        builder.ToTable("events");
 
         builder.HasKey(r => r.Id);
         builder.Property(r => r.Id).ValueGeneratedNever()

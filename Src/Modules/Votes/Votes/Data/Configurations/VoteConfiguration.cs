@@ -4,18 +4,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Vote.Data.Configurations;
 
-using Votes.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;
 using System;
+using Vote.ValueObjects;
 
 public class VoteConfiguration : IEntityTypeConfiguration<VoteModel>
 {
     public void Configure(EntityTypeBuilder<VoteModel> builder)
     {
 
-        builder.ToTable(nameof(VoteModel));
+        builder.ToTable("votes");
 
         builder.HasKey(r => r.Id);
         builder.Property(r => r.Id).ValueGeneratedNever()
@@ -48,10 +48,10 @@ public class VoteConfiguration : IEntityTypeConfiguration<VoteModel>
         builder.Property(x => x.VotedAt);
 
         builder.Property(x => x.Type)
-            .HasDefaultValue(Votes.Enums.VoteType.Home)
+            .HasDefaultValue(Vote.Enums.VoteType.Home)
             .HasConversion(
                 x => x.ToString(),
-                x => (Votes.Enums.VoteType)Enum.Parse(typeof(Votes.Enums.VoteType), x));
+                x => (Vote.Enums.VoteType)Enum.Parse(typeof(Vote.Enums.VoteType), x));
 
     }
 } 
