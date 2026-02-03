@@ -16,6 +16,7 @@ using Sport.Common.Core;
 using Sport.Common.Web;
 using Microsoft.EntityFrameworkCore;
 using Sport.Votes.Exceptions;
+using System.Security.Claims;
 
 namespace Vote.Features.AddVote.V1;
 
@@ -41,9 +42,17 @@ public class AddVoteEndpoint : IMinimalEndpoint
     public IEndpointRouteBuilder MapEndpoint(IEndpointRouteBuilder builder)
     {
         builder.MapPost($"{EndpointConfig.BaseApiPath}/votes", async (AddVoteRequest request,
-                IMediator mediator, IMapper mapper,
+                IMediator mediator, IMapper mapper, IHttpContextAccessor httpContextAccessor,
                 CancellationToken cancellationToken) =>
         {
+            // current user id
+            var userIdClaim = httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!Guid.TryParse(userIdClaim, out var userId))
+            {
+                return Results.Unauthorized();
+            }
+
             var command = mapper.Map<AddVoteCommand>(request);
 
             var result = await mediator.Send(command, cancellationToken);
