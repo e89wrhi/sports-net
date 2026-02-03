@@ -64,7 +64,7 @@ public class DeleteVoteEndpoint : IMinimalEndpoint
             .WithName("DeleteVote")
             .WithApiVersionSet(builder.NewApiVersionSet("Vote").Build())
             .Produces(StatusCodes.Status204NoContent)
-            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .ProducesProblem(StatusCodes.Status400BadRequest).ProducesProblem(StatusCodes.Status401Unauthorized)
             .ProducesProblem(StatusCodes.Status404NotFound)
             .WithSummary("Delete Vote")
             .WithDescription("Delete Vote")

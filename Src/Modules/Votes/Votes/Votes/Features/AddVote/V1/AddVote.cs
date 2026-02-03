@@ -65,7 +65,7 @@ public class AddVoteEndpoint : IMinimalEndpoint
             .WithName("AddVote")
             .WithApiVersionSet(builder.NewApiVersionSet("Vote").Build())
             .Produces<AddVoteRequestResponse>()
-            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .ProducesProblem(StatusCodes.Status400BadRequest).ProducesProblem(StatusCodes.Status401Unauthorized)
             .WithSummary("Add Vote")
             .WithDescription("Add Vote")
             .WithOpenApi()
