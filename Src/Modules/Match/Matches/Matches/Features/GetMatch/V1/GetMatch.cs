@@ -1,28 +1,14 @@
-﻿using Ardalis.GuardClauses;
-using Duende.IdentityServer.EntityFramework.Entities;
-using Match.Data;
-using Match.Dtos;
+﻿using Duende.IdentityServer.EntityFramework.Entities;
+using FluentValidation;
 using Mapster;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
-using Sport.Common.Caching;
-using Sport.Common.Core;
 using Sport.Common.Web;
-using Sport.Matchs.Exceptions;
-using FluentValidation;
 
 namespace Match.Features.GetMatch.V1;
-
-public record GetMatchById(Guid Id) : IQuery<GetMatchByIdResult>;
-
-public record GetMatchByIdResult(MatchDto MatchDto);
-
-public record GetMatchByIdResponseDto(MatchDto MatchDto);
 
 public class GetMatchByIdEndpoint : IMinimalEndpoint
 {
@@ -48,43 +34,5 @@ public class GetMatchByIdEndpoint : IMinimalEndpoint
             .HasApiVersion(1.0);
 
         return builder;
-    }
-}
-
-public class GetMatchByIdValidator : AbstractValidator<GetMatchById>
-{
-    public GetMatchByIdValidator()
-    {
-        RuleFor(x => x.Id).NotNull().WithMessage("Id is required!");
-    }
-}
-
-internal class GetMatchByIdHandler : IQueryHandler<GetMatchById, GetMatchByIdResult>
-{
-    private readonly IMapper _mapper;
-    private readonly MatchDbContext _matchDbContext;
-
-    public GetMatchByIdHandler(IMapper mapper, MatchDbContext matchDbContext)
-    {
-        _mapper = mapper;
-        _matchDbContext = matchDbContext;
-    }
-
-    public async Task<GetMatchByIdResult> Handle(GetMatchById request, CancellationToken cancellationToken)
-    {
-        Guard.Against.Null(request, nameof(request));
-
-        var match = await _matchDbContext.Matches.AsQueryable().SingleOrDefaultAsync(
-            x => x.Id == request.Id &&
-                             !x.IsDeleted, cancellationToken);
-
-        if (match is null)
-        {
-            throw new MatchNotFoundException(request.Id);
-        }
-
-        var matchDto = _mapper.Map<MatchDto>(match);
-
-        return new GetMatchByIdResult(matchDto);
     }
 }
