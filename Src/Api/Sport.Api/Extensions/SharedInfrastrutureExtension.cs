@@ -1,19 +1,20 @@
-﻿using Sport.Common.Core;
+﻿using Event;
+using Figgle;
+using Identity;
+using Match;
+using Microsoft.AspNetCore.Builder.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using Sport;
+using Sport.Common.AI;
+using Sport.Common.BaseExceptions;
+using Sport.Common.Core;
 using Sport.Common.Jwt;
 using Sport.Common.MassTransit;
 using Sport.Common.OpenApi;
 using Sport.Common.PersistMessageProcessor;
-using Sport.Common.Web;
-using Figgle;
-using Sport;
-using Identity;
-using Microsoft.AspNetCore.Builder.Extensions;
-using Microsoft.AspNetCore.Mvc;
-using Event;
-using Match;
-using Vote;
-using Sport.Common.BaseExceptions;
 using Sport.Common.Problems;
+using Sport.Common.Web;
+using Vote;
 
 namespace Api.Extensions;
 
@@ -38,6 +39,7 @@ public static class SharedInfrastructureExtensions
         builder.Services.AddHttpContextAccessor();
         builder.Services.AddScoped<IEventDispatcher, EventDispatcher>();
 
+        builder.Services.AddCustomAI(builder.Configuration);
         builder.Services.AddCustomMassTransit(
             builder.Environment,
             TransportType.InMemory,

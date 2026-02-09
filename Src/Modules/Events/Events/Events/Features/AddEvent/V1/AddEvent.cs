@@ -22,7 +22,7 @@ public record AddEventCommand(
     Guid MatchId,
     string Title,
     DateTime Time,
-    string Type) : ICommand<AddEventCommandResponse>
+    Enums.EventType Type) : ICommand<AddEventCommandResponse>
 {
     public Guid Id { get; init; } = NewId.NextGuid();
 }

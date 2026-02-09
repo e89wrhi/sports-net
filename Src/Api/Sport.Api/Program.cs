@@ -1,6 +1,7 @@
 using Api.Extensions;
 using Event.Extensions.Infrastructure;
 using Identity.Extensions.Infrastructure;
+using Intelligence.Extensions;
 using Match.Extensions.Infrastructure;
 using Sport.Common.Web;
 using Vote.Extensions.Infrastructure;
@@ -12,6 +13,7 @@ builder.AddSharedInfrastructure();
 builder.AddIdentityModules();
 builder.AddEventModules();
 builder.AddMatchModules();
+builder.AddIntelligenceModules();
 builder.AddVoteModules();
 
 var app = builder.Build();
@@ -23,6 +25,7 @@ app.UseAuthorization();
 app.UseEventModules();
 app.UseIdentityModules();
 app.UseMatchModules();
+app.UseIntelligenceModules();
 app.UseVoteModules();
 
 app.UserSharedInfrastructure();
