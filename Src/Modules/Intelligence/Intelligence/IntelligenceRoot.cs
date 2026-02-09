@@ -1,5 +1,5 @@
 ﻿namespace Intelligence;
 
-public class SimpleMDRoot
+public class IntelligenceRoot
 {
 }

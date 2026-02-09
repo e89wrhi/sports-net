@@ -13,9 +13,9 @@ public static class InfrastructureExtensions
 {
     public static WebApplicationBuilder AddIntelligenceModules(this WebApplicationBuilder builder)
     {
-        builder.AddMinimalEndpoints(assemblies: typeof(SimpleMDRoot).Assembly);
-        builder.Services.AddValidatorsFromAssembly(typeof(SimpleMDRoot).Assembly);
-        builder.Services.AddCustomMapster(typeof(SimpleMDRoot).Assembly);
+        builder.AddMinimalEndpoints(assemblies: typeof(IntelligenceRoot).Assembly);
+        builder.Services.AddValidatorsFromAssembly(typeof(IntelligenceRoot).Assembly);
+        builder.Services.AddCustomMapster(typeof(IntelligenceRoot).Assembly);
 
         builder.Services.AddCustomMediatR();
 
