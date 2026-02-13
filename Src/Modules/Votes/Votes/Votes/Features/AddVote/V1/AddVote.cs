@@ -28,14 +28,14 @@ public record AddVoteCommand(
     public Guid Id { get; init; } = NewId.NextGuid();
 }
 
-public record AddVoteCommandResponse(Guid Id);
+public record AddVoteCommandResponse(Guid Id, bool Success);
 
 public record AddVoteRequest(
     Guid MatchId,
     Guid VoterId,
     VoteType Type);
 
-public record AddVoteRequestResponse(Guid Id);
+public record AddVoteRequestResponse(Guid Id, bool Success);
 
 public class AddVoteEndpoint : IMinimalEndpoint
 {
@@ -112,7 +112,7 @@ internal class AddVoteHandler : IRequestHandler<AddVoteCommand, AddVoteCommandRe
 
         var newVote = (await _dbContext.Votes.AddAsync(itemEntity, cancellationToken)).Entity;
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new AddVoteCommandResponse(newVote.Id);
+        return new AddVoteCommandResponse(newVote.Id, true);
     }
 }
 

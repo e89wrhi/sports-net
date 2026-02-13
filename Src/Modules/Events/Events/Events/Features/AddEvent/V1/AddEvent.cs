@@ -27,7 +27,7 @@ public record AddEventCommand(
     public Guid Id { get; init; } = NewId.NextGuid();
 }
 
-public record AddEventCommandResponse(Guid Id);
+public record AddEventCommandResponse(Guid Id, bool Success);
 
 public record AddEventRequest(
     Guid MatchId,
@@ -35,7 +35,7 @@ public record AddEventRequest(
     DateTime Time,
     Enums.EventType Type);
 
-public record AddEventRequestResponse(Guid Id);
+public record AddEventRequestResponse(Guid Id, bool Success);
 
 public class AddEventEndpoint : IMinimalEndpoint
 {
@@ -96,6 +96,6 @@ internal class AddEventHandler : IRequestHandler<AddEventCommand, AddEventComman
 
         var newEvent = (await _dbContext.Events.AddAsync(itemEntity, cancellationToken)).Entity;
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new AddEventCommandResponse(newEvent.Id);
+        return new AddEventCommandResponse(newEvent.Id, true);
     }
 }

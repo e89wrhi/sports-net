@@ -24,7 +24,7 @@ public record DeleteMatchCommand(
 {
 }
 
-public record DeleteMatchCommandResponse(Guid Id);
+public record DeleteMatchCommandResponse(Guid Id, bool Success);
 
 public class DeleteMatchEndpoint : IMinimalEndpoint
 {
@@ -86,7 +86,7 @@ internal class DeleteMatchHandler : IRequestHandler<DeleteMatchCommand, DeleteMa
         item.Delete();
         _dbContext.Matches.Update(item);
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new DeleteMatchCommandResponse(request.MatchId);
+        return new DeleteMatchCommandResponse(request.MatchId, true);
     }
 }
 

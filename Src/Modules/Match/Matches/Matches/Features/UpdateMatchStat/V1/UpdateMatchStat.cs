@@ -28,14 +28,14 @@ public record UpdateMatchStatCommand(
 {
 }
 
-public record UpdateMatchStatCommandResponse(Guid Id);
+public record UpdateMatchStatCommandResponse(Guid Id, bool Success);
 
 public record UpdateMatchStatRequest(
     Guid MatchId,
     int HomeTeamScore,
     int AwayTeamScore);
 
-public record UpdateMatchStatRequestResponse(Guid Id);
+public record UpdateMatchStatRequestResponse(Guid Id, bool Success);
 
 public class UpdateMatchStatEndpoint : IMinimalEndpoint
 {
@@ -101,7 +101,7 @@ internal class UpdateMatchStatHandler : IRequestHandler<UpdateMatchStatCommand, 
         item.UpdateScore(Score.Of(request.HomeTeamScore), Score.Of(request.AwayTeamScore));
         _dbContext.Matches.Update(item);
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new UpdateMatchStatCommandResponse(item.Id);
+        return new UpdateMatchStatCommandResponse(item.Id, true);
     }
 }
 

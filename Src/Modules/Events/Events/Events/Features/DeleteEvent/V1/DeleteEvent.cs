@@ -24,7 +24,7 @@ public record DeleteEventCommand(
 {
 }
 
-public record DeleteEventCommandResponse(Guid Id);
+public record DeleteEventCommandResponse(Guid Id, bool Success);
 
 public class DeleteEventEndpoint : IMinimalEndpoint
 {
@@ -85,7 +85,7 @@ internal class DeleteEventHandler : IRequestHandler<DeleteEventCommand, DeleteEv
 
         _dbContext.Events.Remove(item);
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new DeleteEventCommandResponse(request.EventId);
+        return new DeleteEventCommandResponse(request.EventId, true);
     }
 }
 

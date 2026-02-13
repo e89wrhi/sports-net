@@ -37,12 +37,14 @@ public class PredictMatchEndpoint : IMinimalEndpoint
                         request.ModelId);
                     var result = await mediator.Send(command, cancellationToken);
                     return Results.Ok(new PredictMatchResponseDto(
+                        request.MatchId,
                         result.Prediction,
                         result.HomeWinProbability,
                         result.DrawProbability,
                         result.AwayWinProbability,
                         result.ModelId, 
-                        result.ProviderName));
+                        result.ProviderName,
+                        true));
                 })
             .RequireAuthorization(nameof(ApiScope))
             .WithName("PredictMatch")

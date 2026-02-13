@@ -28,7 +28,7 @@ public record CreateMatchCommand(
     public Guid Id { get; init; } = NewId.NextGuid();
 }
 
-public record CreateMatchCommandResponse(Guid Id);
+public record CreateMatchCommandResponse(Guid Id, bool Success);
 
 public record CreateMatchRequest(
     string HomeTeam,
@@ -37,7 +37,7 @@ public record CreateMatchRequest(
     MatchStatus Status,
     DateTime MatchTime);
 
-public record CreateMatchRequestResponse(Guid Id);
+public record CreateMatchRequestResponse(Guid Id, bool Success);
 
 public class CreateMatchEndpoint : IMinimalEndpoint
 {
@@ -99,7 +99,7 @@ internal class CreateMatchHandler : IRequestHandler<CreateMatchCommand, CreateMa
 
         var newMatch = (await _dbContext.Matches.AddAsync(itemEntity, cancellationToken)).Entity;
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new CreateMatchCommandResponse(newMatch.Id);
+        return new CreateMatchCommandResponse(newMatch.Id, true);
     }
 }
 

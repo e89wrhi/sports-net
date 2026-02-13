@@ -29,7 +29,7 @@ public record UpdateMatchCommand(
 {
 }
 
-public record UpdateMatchCommandResponse(Guid Id);
+public record UpdateMatchCommandResponse(Guid Id, bool Success);
 
 public record UpdateMathRequest(
     Guid MatchId,
@@ -39,7 +39,7 @@ public record UpdateMathRequest(
     MatchStatus Status,
     DateTime MatchTime);
 
-public record UpdateMatchRequestResponse(Guid Id);
+public record UpdateMatchRequestResponse(Guid Id, bool Success);
 
 public record UpdateMatchRequest(
     );
@@ -111,7 +111,7 @@ internal class UpdateMatchHandler : IRequestHandler<UpdateMatchCommand, UpdateMa
             request.League, request.Status, request.MatchTime);
         _dbContext.Matches.Update(item);
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new UpdateMatchCommandResponse(item.Id);
+        return new UpdateMatchCommandResponse(item.Id, true);
     }
 }
 

@@ -27,14 +27,14 @@ public record DeleteVoteCommand(
 {
 }
 
-public record DeleteVoteCommandResponse(Guid Id);
+public record DeleteVoteCommandResponse(Guid Id, bool Success);
 
 public record DeleteVoteRequest(
     Guid MatchId,
     Guid VoterId,
     VoteType VoteType);
 
-public record DeleteVoteRequestResponse(Guid Id);
+public record DeleteVoteRequestResponse(Guid Id, bool Success);
 
 public class DeleteVoteEndpoint : IMinimalEndpoint
 {
@@ -107,7 +107,7 @@ internal class DeleteVoteHandler : IRequestHandler<DeleteVoteCommand, DeleteVote
         }
         _dbContext.Votes.Remove(item);
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new DeleteVoteCommandResponse(item.Id);
+        return new DeleteVoteCommandResponse(item.Id, true);
     }
 }
 
