@@ -25,7 +25,9 @@ public record UpdateMatchCommand(
     string AwayTeam,
     MatchLeague League,
     MatchStatus Status,
-    DateTime MatchTime) : ICommand<UpdateMatchCommandResponse>
+    DateTime StartAt,
+    DateTime FinishAt,
+    string Referee) : ICommand<UpdateMatchCommandResponse>
 {
 }
 
@@ -37,7 +39,9 @@ public record UpdateMathRequest(
     string AwayTeam,
     MatchLeague League,
     MatchStatus Status,
-    DateTime MatchTime);
+    DateTime StartAt,
+    DateTime FinishAt, 
+    string Referee);
 
 public record UpdateMatchRequestResponse(Guid Id, bool Success);
 
@@ -82,7 +86,7 @@ public class UpdateMatchCommandValidator : AbstractValidator<UpdateMatchCommand>
         RuleFor(x => x.AwayTeam).NotEmpty().WithMessage("Away Team is required");
         RuleFor(x => x.League).NotEmpty().WithMessage("League is required");
         RuleFor(x => x.Status).NotEmpty().WithMessage("Status is required");
-        RuleFor(x => x.MatchTime).NotEmpty().WithMessage("Match Time is required");
+        RuleFor(x => x.StartAt).NotEmpty().WithMessage("Match Time is required");
     }
 }
 
@@ -108,7 +112,8 @@ internal class UpdateMatchHandler : IRequestHandler<UpdateMatchCommand, UpdateMa
         }
 
         item.Update(HomeTeam.Of(request.HomeTeam), AwayTeam.Of(request.AwayTeam),
-            request.League, request.Status, request.MatchTime);
+            request.League, request.Status, request.StartAt, request.FinishAt,
+            request.Referee);
         _dbContext.Matches.Update(item);
         await _dbContext.SaveChangesAsync(cancellationToken);
         return new UpdateMatchCommandResponse(item.Id, true);

@@ -12,7 +12,9 @@ public record MatchModel : Aggregate<MatchId>
     public Score AwayTeamScore { get; private set; } = default!;
     public MatchLeague League { get; private set; } = default!;
     public MatchStatus Status { get; private set; } = default!;
-    public DateTime MatchTime { get; private set; } = default!;
+    public DateTime StartAt { get; private set; } = default!;
+    public DateTime FinishAt { get; private set; } = default!;
+    public string Referee { get; private set; } = default!;
 
     public int EventsCount { get; private set; } = default!;
     public int HomeVotesCount { get; private set; } = default!;
@@ -20,7 +22,8 @@ public record MatchModel : Aggregate<MatchId>
     public int DrawVotesCount { get; private set; } = default!;
 
     public static MatchModel Create(HomeTeam homeTeam, AwayTeam awayTeam,
-          MatchLeague matchLeague, MatchStatus matchStatus, DateTime matchTime)
+          MatchLeague matchLeague, MatchStatus matchStatus, 
+          DateTime startAt, DateTime finishAt, string referee)
     {
         var item = new MatchModel()
         {
@@ -29,28 +32,33 @@ public record MatchModel : Aggregate<MatchId>
             AwayTeam = awayTeam,
             League = matchLeague,
             Status = matchStatus,
-            MatchTime = matchTime,
+            StartAt = startAt,
+            FinishAt = finishAt,
+            Referee = referee,
             Version = 1,
         };
 
         var @event = new MatchCreatedDomainEvent(item.Id, homeTeam, awayTeam, matchLeague,
-            matchStatus, matchTime);
+            matchStatus, startAt);
         item.AddDomainEvent(@event);
         return item;
     }
 
     public void Update(HomeTeam homeTeam, AwayTeam awayTeam,
-          MatchLeague matchLeague, MatchStatus matchStatus, DateTime matchTime)
+          MatchLeague matchLeague, MatchStatus matchStatus, 
+          DateTime startAt, DateTime finishAt, string referee)
     {
         HomeTeam = homeTeam;
         AwayTeam = awayTeam;
         League = matchLeague;
         Status = matchStatus;
-        MatchTime = matchTime;
+        StartAt = startAt;
+        FinishAt = finishAt;
+        Referee = referee;
         Version++;
         LastModified = DateTime.UtcNow;
         AddDomainEvent(new MatchUpdatedDomainEvent(Id, homeTeam, awayTeam, matchLeague, matchStatus,
-            matchTime));
+            startAt));
     }
 
     public void UpdateScore(Score homeTeamScore, Score awayTeamScore)

@@ -23,7 +23,9 @@ public record CreateMatchCommand(
     AwayTeam AwayTeam,
     MatchLeague League,
     MatchStatus Status,
-    DateTime MatchTime) : ICommand<CreateMatchCommandResponse>
+    DateTime StartAt,
+    DateTime FinishAt,
+    string Referee) : ICommand<CreateMatchCommandResponse>
 {
     public Guid Id { get; init; } = NewId.NextGuid();
 }
@@ -35,7 +37,9 @@ public record CreateMatchRequest(
     string AwayTeam,
     MatchLeague League,
     MatchStatus Status,
-    DateTime MatchTime);
+    DateTime StartAt,
+    DateTime FinishAt,
+    string Referee);
 
 public record CreateMatchRequestResponse(Guid Id, bool Success);
 
@@ -77,7 +81,7 @@ public class CreateMatchCommandValidator : AbstractValidator<CreateMatchCommand>
         RuleFor(x => x.AwayTeam).NotEmpty().WithMessage("Away Team is required");
         RuleFor(x => x.League).NotEmpty().WithMessage("League is required");
         RuleFor(x => x.Status).NotEmpty().WithMessage("Status is required");
-        RuleFor(x => x.MatchTime).NotEmpty().WithMessage("Match Time is required");
+        RuleFor(x => x.StartAt).NotEmpty().WithMessage("Match Time is required");
     }
 }
 
@@ -95,7 +99,7 @@ internal class CreateMatchHandler : IRequestHandler<CreateMatchCommand, CreateMa
         Guard.Against.Null(request, nameof(request));
 
         var itemEntity = Models.MatchModel.Create(HomeTeam.Of(request.HomeTeam), AwayTeam.Of(request.AwayTeam),
-            request.League, request.Status, request.MatchTime);
+            request.League, request.Status, request.StartAt, request.FinishAt, request.Referee);
 
         var newMatch = (await _dbContext.Matches.AddAsync(itemEntity, cancellationToken)).Entity;
         await _dbContext.SaveChangesAsync(cancellationToken);
