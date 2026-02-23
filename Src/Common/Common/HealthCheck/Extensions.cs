@@ -4,11 +4,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
-using MongoDB.Driver;
 using RabbitMQ.Client;
 using Sport.Common.EFCore;
 using Sport.Common.EventStoreDB;
-using Sport.Common.Mongo;
 using Sport.Common.MassTransit;
 using Sport.Common.Web;
 
@@ -16,7 +14,7 @@ namespace Sport.Common.HealthCheck;
 
 /// <summary>
 /// Infrastructure extensions for setting up Health Checks.
-/// It configures checks for RabbitMQ, MongoDB, Postgres, and EventStoreDB,
+/// It configures checks for RabbitMQ, Postgres, and EventStoreDB,
 /// and also provides a UI to visualize the system's health status.
 /// </summary>
 public static class Extensions
@@ -34,8 +32,7 @@ public static class Extensions
             var postgresOptions = services.GetOptions<PostgresOptions>(nameof(PostgresOptions));
             var rabbitMqOptions = services.GetOptions<RabbitMqOptions>(nameof(RabbitMqOptions));
             var eventStoreOptions = services.GetOptions<EventStoreOptions>(nameof(EventStoreOptions));
-            var mongoOptions = services.GetOptions<MongoOptions>(nameof(MongoOptions));
-
+           
             var healthChecksBuilder = services.AddHealthChecks()
                 // Add a default liveness check to ensure app is responsive
                 .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"])
@@ -48,15 +45,6 @@ public static class Extensions
                         };
                         return factory.CreateConnectionAsync();
                     });
-
-            if (!string.IsNullOrEmpty(mongoOptions.ConnectionString))
-            {
-                healthChecksBuilder.AddMongoDb(
-                    clientFactory: _ => new MongoClient(mongoOptions.ConnectionString),
-                    name: "MongoDB-Health",
-                    failureStatus: HealthStatus.Unhealthy,
-                    timeout: TimeSpan.FromSeconds(10));
-            }
 
             if (!string.IsNullOrEmpty(postgresOptions.ConnectionString))
                 healthChecksBuilder.AddNpgSql(postgresOptions.ConnectionString);

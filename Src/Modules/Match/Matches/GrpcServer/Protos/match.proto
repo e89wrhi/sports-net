@@ -24,9 +24,11 @@ message MatchResponse {
   int32 AwayTeamScore = 5;
   string League = 6;
   string Status = 7;
-  google.protobuf.Timestamp MatchTime = 8;
-  int32 EventsCount = 9;
-  int32 HomeVotesCount = 10;
-  int32 AwayVotesCount = 11;
-  int32 DrawVotesCount = 12;
+  google.protobuf.Timestamp StartAt = 8;
+  google.protobuf.Timestamp FinishAt = 9;
+  string Refree = 10;
+  int32 EventsCount = 11;
+  int32 HomeVotesCount = 12;
+  int32 AwayVotesCount = 13;
+  int32 DrawVotesCount = 14;
 }

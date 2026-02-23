@@ -14,7 +14,9 @@
 - **🏟️ Real-time Match Center**: Live updates, scores, and event tracking.
 - **🗳️ Fan Engagement**: Real-time voting system for match outcomes and MVP selections.
 - **🤖 Intelligence Module**: AI-powered predictive analytics, sentiment analysis, and personalized recommendations.
-- **⚡ High Performance**: Built on EventStoreDB for event sourcing and MongoDB for read models.
+- **⚡ High Performance**: Built on EventStoreDB for event sourcing and 
+- 
+DB for read models.
 - **🛠️ Modular Design**: Highly decoupled architecture allowing teams to work independently on modules like Match, Votes, and Identity.
 
 ---
@@ -25,7 +27,7 @@ SportNet follows the **Modular Monolith** pattern, balancing the simplicity of a
 
 ### Tech Stack
 - **Core**: .NET 8, C#, Domain-Driven Design (DDD)
-- **Persistance**: EF Core (PostgreSQL), MongoDB (Read Models)
+- **Persistance**: EF Core (PostgreSQL), MonqgoDB (Read Models)
 - **Event Sourcing**: EventStoreDB
 - **Messaging**: MassTransit with RabbitMQ/Azure Service Bus
 - **Intelligence**: LLM Integration (OpenAI/Gemini), Vector Search (Milvus/Pinecone)
@@ -70,7 +72,7 @@ Src/
 ## 🛠️ Getting Started
 
 1. **Clone the repository**
-2. **Setup Infrastructure**: Use the provided `docker-compose.yml` to spin up PostgreSQL, MongoDB, and EventStoreDB.
+2. **Setup Infrastructure**: Use the provided `docker-compose.yml` to spin up PostgreSQL, and EventStoreDB.
 3. **Run the API**: `dotnet run --project Src/Api/Api.csproj`
 
 ---

@@ -19,7 +19,7 @@ The heart of our system, located in `/Core`.
 ### 2. 💾 Hybrid Persistence
 We support multiple storage paradigms to fit different module needs:
 - **Relational**: `/EFCore` provides base repositories and automatic auditing for PostgreSQL.
-- **Document**: `/Mongo` (NoSQL) offers high-performance storage for flexible data structures.
+- **Document**: `/Moqngo` (NoSQL) offers high-performance storage for flexible data structures.
 - **Event Sourced**: `/EventStoreDB` enables full audit trails and temporal state reconstruction.
 
 ### 3. 📡 Reliable Messaging
@@ -47,7 +47,7 @@ See everything that happens in your system:
 | `/Exception` | Global exception handling and specialized exception types. |
 | `/Jwt` | JSON Web Token authentication and authorization helpers. |
 | `/MassTransit` | Messaging extensions and consumer filters (Idempotency). |
-| `/Mongo` | MongoDB repository patterns and transaction management. |
+| `/Monqgo` | MonqgoDB repository patterns and transaction management. |
 | `/OpenTelemetryCollector` | Fully automated tracing, metrics, and exporter setup. |
 | `/PersistMessageProcessor` | Implementation of the Outbox and Inbox patterns. |
 | `/Polly` | Resilience policies (Retries, Circuit Breakers, Timeouts). |
@@ -94,7 +94,7 @@ public class CreateMatchHandler : ICommandHandler<CreateMatchCommand>
 
 - **Framework**: .NET 8 / 9
 - **Messaging**: MassTransit, RabbitMQ
-- **Persistence**: EF Core (PostgreSQL), MongoDB, EventStoreDB
+- **Persistence**: EF Core (PostgreSQL), EventStoreDB
 - **Observability**: OpenTelemetry, Serilog, Grafana
 - **Utilities**: MediatR, FluentValidation, Polly, Mapster
 

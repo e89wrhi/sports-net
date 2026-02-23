@@ -67,7 +67,9 @@ public class MatchConfiguration : IEntityTypeConfiguration<MatchModel>
             }
         );
 
-        builder.Property(x => x.MatchTime);
+        builder.Property(x => x.StartAt);
+        builder.Property(x => x.FinishAt);
+        builder.Property(x => x.Referee);
         builder.Property(x => x.EventsCount);
         builder.Property(x => x.HomeVotesCount);
         builder.Property(x => x.AwayVotesCount);
