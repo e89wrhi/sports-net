@@ -50,6 +50,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDefaults", "Src\Aspi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHost", "Src\Aspire\AppHost\AppHost.csproj", "{F7489196-2E1A-4467-B013-2E2A198A6D97}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{33C6A95B-DF5C-426A-B5A3-D68E52F182DA}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\add-migration.sh = Scripts\add-migration.sh
+		Scripts\Add-Migrations.ps1 = Scripts\Add-Migrations.ps1
+		Scripts\Update-Databases.ps1 = Scripts\Update-Databases.ps1
+		Scripts\update-db.sh = Scripts\update-db.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
