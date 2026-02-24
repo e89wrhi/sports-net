@@ -10,11 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddSharedInfrastructure();
 
-builder.AddIdentityModules();
-builder.AddEventModules();
-builder.AddMatchModules();
-builder.AddIntelligenceModules();
-builder.AddVoteModules();
+// Automated discovery for IModule implementations (Identity and ChatBot)
+builder.AddModules();
 
 var app = builder.Build();
 
@@ -22,11 +19,8 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEventModules();
-app.UseIdentityModules();
-app.UseMatchModules();
-app.UseIntelligenceModules();
-app.UseVoteModules();
+// Automatically configures middleware for discovered modules (Identity and ChatBot)
+app.UseModules();
 
 app.UserSharedInfrastructure();
 app.MapMinimalEndpoints();
