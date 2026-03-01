@@ -4,6 +4,7 @@
 [![.NET 8](https://img.shields.io/badge/.NET-8.0-512bd4.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
 [![Architecture: Modular Monolith](https://img.shields.io/badge/Architecture-Modular%20Monolith-blue.svg)](#architecture)
 [![AI-Enhanced](https://img.shields.io/badge/AI-Enhanced-brightgreen.svg)](#intelligence-module)
+[![.NET Aspire](https://img.shields.io/badge/.NET-Aspire-purple.svg)](https://learn.microsoft.com/en-us/dotnet/aspire/)
 
 **SportNet** is a state-of-the-art sports platform built with a high-performance Modular Monolith architecture. It integrates real-time match data, user engagement via voting, and advanced AI-driven insights to provide a next-generation sports experience.
 
@@ -11,13 +12,11 @@
 
 ## 🚀 Key Features
 
-- **🏟️ Real-time Match Center**: Live updates, scores, and event tracking.
-- **🗳️ Fan Engagement**: Real-time voting system for match outcomes and MVP selections.
-- **🤖 Intelligence Module**: AI-powered predictive analytics, sentiment analysis, and personalized recommendations.
-- **⚡ High Performance**: Built on EventStoreDB for event sourcing and 
-- 
-DB for read models.
-- **🛠️ Modular Design**: Highly decoupled architecture allowing teams to work independently on modules like Match, Votes, and Identity.
+*   **🏟️ Real-time Match Center**: Live updates, scores, and event tracking.
+*   **🗳️ Fan Engagement**: Real-time voting system for match outcomes and MVP selections.
+*   **🤖 Intelligence Module**: AI-powered predictive analytics, sentiment analysis, and personalized recommendations.
+*   **⚡ High Performance**: Built on EventStoreDB for event sourcing and MongoDB for read models.
+*   **🛠️ Modular Design**: Highly decoupled architecture allowing teams to work independently on modules like Match, Votes, Identity, and Intelligence.
 
 ---
 
@@ -26,57 +25,92 @@ DB for read models.
 SportNet follows the **Modular Monolith** pattern, balancing the simplicity of a single deployment unit with the scalability and decoupling of microservices.
 
 ### Tech Stack
-- **Core**: .NET 8, C#, Domain-Driven Design (DDD)
-- **Persistance**: EF Core (PostgreSQL), MonqgoDB (Read Models)
-- **Event Sourcing**: EventStoreDB
-- **Messaging**: MassTransit with RabbitMQ/Azure Service Bus
-- **Intelligence**: LLM Integration (OpenAI/Gemini), Vector Search (Milvus/Pinecone)
-- **Observability**: OpenTelemetry, Jaeger, Prometheus
+*   **Core**: .NET 8, C#, Domain-Driven Design (DDD)
+*   **API & Framework**: ASP.NET Core
+*   **Persistence**: EF Core (PostgreSQL) for write models, MongoDB for read models (CQRS)
+*   **Event Sourcing**: EventStoreDB
+*   **Messaging**: MassTransit with RabbitMQ
+*   **Intelligence**: AI / LLM Integration
+*   **Observability & Orchestration**: .NET Aspire, OpenTelemetry
 
 ---
 
 ## 🧠 Intelligence Module (The AI Edge)
 
-The `Intelligence` module is the brain of SportNet. It leverages modern AI techniques to transform raw sports data into actionable insights.
+The `Intelligence` module is the brain of SportNet. It leverages modern AI techniques to transform raw sports data into actionable insights:
 
-### 1. Predictive Match Analytics
-Using historical data and real-time form, our AI models predict:
-- Win/Draw/Loss probabilities.
-- Dynamic score predictions.
-- Over/Under goal expectations.
-
-### 2. Social Sentiment Analysis
-By ingestion of social feeds and platform comments, SportNet gauges the "vibe" of a match or team in real-time.
-
-### 3. Personalized Hyper-Recommendations
-An embedding-based recommendation engine that suggests matches and content based on deep user behavioral patterns, not just simple filters.
+1.  **Predictive Match Analytics**: Win/Draw/Loss probabilities and dynamic score predictions based on historical and real-time data.
+2.  **Social Sentiment Analysis**: Gauging the "vibe" of a match or team by ingesting live interactions and comments.
+3.  **Personalized Recommendations**: Suggesting matches and content tailored to deep user behavioral patterns.
 
 ---
 
 ## 📂 Project Structure
 
+The solution leverages a Clean Architecture and Domain-Driven Design inspired structure across highly cohesive modules:
+
 ```text
-Src/
-├── Api/              # API Gateway & Controllers
-├── Common/           # Shared Infrastructure & Core DDD patterns
-└── Modules/          
-    ├── Match/        # Match management & Live scores
-    ├── Votes/        # Fan voting system
-    ├── Events/       # Match event stream
-    ├── Identity/     # User & Security
-    └── Intelligence/ # AI-Powered Analytics & Insights (NEW)
+d:\dev\_projects\Sport\
+├── Docs/             # Project documentation
+├── Scripts/          # Developer scripts (DB migrations, etc.)
+│   ├── Add-Migrations.ps1
+│   ├── Update-Databases.ps1
+│   └── ...
+└── Src/
+    ├── Api/          # Outer-facing API Gateway & Controllers
+    ├── Aspire/       # .NET Aspire orchestration (AppHost & ServiceDefaults)
+    ├── Common/       # Shared Infrastructure, Core DDD abstractions, and UI
+    ├── Modules/      # Independent domain boundaries
+    │   ├── Events/       # Match event streams
+    │   ├── Identity/     # User authentication & security
+    │   ├── Intelligence/ # AI-Powered Analytics
+    │   ├── Match/        # Match management & scheduling
+    │   └── Votes/        # Fan voting interactions
+    └── Tests/        # Unit & Integration tests
 ```
 
 ---
 
 ## 🛠️ Getting Started
 
-1. **Clone the repository**
-2. **Setup Infrastructure**: Use the provided `docker-compose.yml` to spin up PostgreSQL, and EventStoreDB.
-3. **Run the API**: `dotnet run --project Src/Api/Api.csproj`
+Running SportNet locally is seamless thanks to **.NET Aspire**, which automatically handles infrastructure dependencies like databases, message brokers, and event stores using container orchestration.
+
+### Prerequisites
+*   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+*   Docker Desktop (required by .NET Aspire to spin up backing services)
+*   Visual Studio 2022 (v17.9+) or JetBrains Rider (latest)
+
+### Running the Ecosystem
+
+1.  **Start the Aspire AppHost**
+    Run the application via the `.NET Aspire AppHost`. This will launch the Dashboard, API, and all required containers (PostgreSQL, MongoDB, EventStore, RabbitMQ) automatically.
+    
+    ```bash
+    dotnet run --project Src/Aspire/AppHost/AppHost.csproj
+    ```
+    
+    _Or set `AppHost` as your startup project in your IDE and hit Run (F5)._
+
+2.  **Apply Database Migrations**
+    To set up your relational databases, run the provided utility scripts from the repository root:
+    
+    **PowerShell (Windows)**
+    ```powershell
+    ./Scripts/Update-Databases.ps1
+    ```
+    
+    **Bash (Linux/macOS)**
+    ```bash
+    chmod +x Scripts/update-db.sh
+    ./Scripts/update-db.sh
+    ```
+
+3.  **Explore the Dashboard**
+    Upon launch, access the **.NET Aspire Dashboard** (at the URL specified in your terminal, typically `http://localhost:18888` or similar) to view application logs, metrics, distributed traces, and running containers.
 
 ---
 
 ## 👨‍💻 Author
+
 Built with ❤️ for the future of sports.
 Available for hire. [LinkedIn](https://linkedin.com) | [Portfolio](https://portfolio.com)
