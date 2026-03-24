@@ -58,6 +58,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{33C6
 		Scripts\update-db.sh = Scripts\update-db.sh
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{C8766D40-FEAC-4BFC-8D11-BBEC120B0362}"
+	ProjectSection(SolutionItems) = preProject
+		assets\sports_banner.png = assets\sports_banner.png
+		assets\sports_logo.png = assets\sports_logo.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

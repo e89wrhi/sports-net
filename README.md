@@ -1,4 +1,12 @@
-# 🏆 SportNet: AI-Powered Sports Ecosystem
+<p align="center">
+  <img src="assets/sports_logo.png" alt="Sports-Logo" width="120">
+</p>
+
+# Sport App
+
+<p align="center">
+  <img src="assets/sports_banner.png" alt="Sports Platform Banner" width="100%">
+</p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![.NET 8](https://img.shields.io/badge/.NET-8.0-512bd4.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
