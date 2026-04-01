@@ -8,11 +8,23 @@
   <img src="assets/sports_banner.png" alt="Sports Platform Banner" width="100%">
 </p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![.NET 8](https://img.shields.io/badge/.NET-8.0-512bd4.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
-[![Architecture: Modular Monolith](https://img.shields.io/badge/Architecture-Modular%20Monolith-blue.svg)](#architecture)
-[![AI-Enhanced](https://img.shields.io/badge/AI-Enhanced-brightgreen.svg)](#intelligence-module)
-[![.NET Aspire](https://img.shields.io/badge/.NET-Aspire-purple.svg)](https://learn.microsoft.com/en-us/dotnet/aspire/)
+<p align="center">
+
+<a href="https://github.com/e89wrhi/sports-client">
+  <img src="https://img.shields.io/badge/Frontend-GitHub-blue?style=for-the-badge&logo=github" alt="Frontend Repo">
+</a>
+
+<br/>
+
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Local Build](https://img.shields.io/badge/local_build-passing-blue)
+![Deployment](https://img.shields.io/badge/deployment-pending-yellow)
+
+![Dev](https://img.shields.io/badge/Dev-Not_Deployed-grey)
+![Staging](https://img.shields.io/badge/Staging-Not_Deployed-grey)
+![Production](https://img.shields.io/badge/Production-Awaiting-yellow)
+
+</p>
 
 **SportNet** is a state-of-the-art sports platform built with a high-performance Modular Monolith architecture. It integrates real-time match data, user engagement via voting, and advanced AI-driven insights to provide a next-generation sports experience.
 
@@ -84,7 +96,7 @@ d:\dev\_projects\Sport\
 Running SportNet locally is seamless thanks to **.NET Aspire**, which automatically handles infrastructure dependencies like databases, message brokers, and event stores using container orchestration.
 
 ### Prerequisites
-*   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+*   [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 *   Docker Desktop (required by .NET Aspire to spin up backing services)
 *   Visual Studio 2022 (v17.9+) or JetBrains Rider (latest)
 
