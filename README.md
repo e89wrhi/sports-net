@@ -45,7 +45,7 @@
 SportNet follows the **Modular Monolith** pattern, balancing the simplicity of a single deployment unit with the scalability and decoupling of microservices.
 
 ### Tech Stack
-*   **Core**: .NET 8, C#, Domain-Driven Design (DDD)
+*   **Core**: .NET 10, C#, Domain-Driven Design (DDD)
 *   **API & Framework**: ASP.NET Core
 *   **Persistence**: EF Core (PostgreSQL) for write models, MongoDB for read models (CQRS)
 *   **Event Sourcing**: EventStoreDB
@@ -127,10 +127,3 @@ Running SportNet locally is seamless thanks to **.NET Aspire**, which automatica
 
 3.  **Explore the Dashboard**
     Upon launch, access the **.NET Aspire Dashboard** (at the URL specified in your terminal, typically `http://localhost:18888` or similar) to view application logs, metrics, distributed traces, and running containers.
-
----
-
-## 👨‍💻 Author
-
-Built with ❤️ for the future of sports.
-Available for hire. [LinkedIn](https://linkedin.com) | [Portfolio](https://portfolio.com)
