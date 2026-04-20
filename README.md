@@ -10,7 +10,7 @@
 
 <p align="center">
 
-<a href="https://github.com/e89wrhi/sports-client">
+<a href="https://github.com/e89wrhi/sport-client">
   <img src="https://img.shields.io/badge/Frontend-GitHub-blue?style=for-the-badge&logo=github" alt="Frontend Repo">
 </a>
 
