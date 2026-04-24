@@ -9,7 +9,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<EventDbCon
     {
         var builder = new DbContextOptionsBuilder<EventDbContext>();
 
-        builder.UseNpgsql("Server=localhost;Port=5432;Database=event;User Id=postgres;Password=postgres;Include Error Detail=true")
+        builder.UseNpgsql("Server=localhost;Port=5431;Database=event;User Id=postgres;Password=changeme;Include Error Detail=true")
             .UseSnakeCaseNamingConvention();
         return new EventDbContext(builder.Options);
     }

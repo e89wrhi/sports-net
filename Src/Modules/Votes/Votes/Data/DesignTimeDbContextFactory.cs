@@ -9,7 +9,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<VoteDbCont
     {
         var builder = new DbContextOptionsBuilder<VoteDbContext>();
 
-        builder.UseNpgsql("Server=localhost;Port=5432;Database=vote;User Id=postgres;Password=postgres;Include Error Detail=true")
+        builder.UseNpgsql("Server=localhost;Port=5431;Database=vote;User Id=postgres;Password=changeme;Include Error Detail=true")
             .UseSnakeCaseNamingConvention();
         return new VoteDbContext(builder.Options);
     }
