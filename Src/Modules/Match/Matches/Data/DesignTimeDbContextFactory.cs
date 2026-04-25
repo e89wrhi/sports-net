@@ -9,7 +9,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<MatchDbCon
     {
         var builder = new DbContextOptionsBuilder<MatchDbContext>();
 
-        builder.UseNpgsql("Server=localhost;Port=5432;Database=match;User Id=postgres;Password=postgres;Include Error Detail=true")
+        builder.UseNpgsql("Server=localhost;Port=5431;Database=match;User Id=postgres;Password=changeme;Include Error Detail=true")
             .UseSnakeCaseNamingConvention();
         return new MatchDbContext(builder.Options);
     }

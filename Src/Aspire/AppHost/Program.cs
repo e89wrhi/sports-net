@@ -8,7 +8,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 // 1. Database Services
 var pgUsername = builder.AddParameter("pg-username", "postgres", secret: true);
-var pgPassword = builder.AddParameter("pg-password", "postgres", secret: true);
+var pgPassword = builder.AddParameter("pg-password", "changeme", secret: true);
 
 var postgres = builder.AddPostgres("postgres", pgUsername, pgPassword)
     .WithImage("postgres:latest")
@@ -16,7 +16,7 @@ var postgres = builder.AddPostgres("postgres", pgUsername, pgPassword)
         "tcp",
         e =>
         {
-            e.Port = 5432;
+            e.Port = 5431;
             e.TargetPort = 5432;
             e.IsProxied = true;
             e.IsExternal = false;
