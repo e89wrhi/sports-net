@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="assets/sports_logo.png" alt="Sports-Logo" width="120">
+  <img src="assets/sports_logo.png" alt="snowball-Logo" width="120">
 </p>
 
-# Sport App
+# SnowBall
 
 <p align="center">
-  <img src="assets/sports_banner.png" alt="Sports Platform Banner" width="100%">
+  <img src="assets/sports_banner.png" alt="SnowBall Platform Banner" width="100%">
 </p>
 
 <p align="center">
@@ -26,7 +26,7 @@
 
 </p>
 
-**SportNet** is a state-of-the-art sports platform built with a high-performance Modular Monolith architecture. It integrates real-time match data, user engagement via voting, and advanced AI-driven insights to provide a next-generation sports experience.
+**SnowBall** is a state-of-the-art sports platform built with a high-performance Modular Monolith architecture. It integrates real-time match data, user engagement via voting, and advanced AI-driven insights to provide a next-generation sports experience.
 
 ---
 
