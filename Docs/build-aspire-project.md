@@ -73,7 +73,7 @@ dotnet ef migrations add MyChange `
 
 | Service | URL | Notes |
 |---|---|---|
-| **AI API** | http://localhost:3001 | Swagger available at `/swagger` |
+| **Sport API** | http://localhost:3001 | Swagger available at `/swagger` |
 | **Aspire Dashboard** | *See Terminal Output* | Logs, Metrics, Traces |
 | **RabbitMQ UI** | http://localhost:15672 | `guest`/`guest` |
 | **EventStoreDB** | http://localhost:2113 | Stream browser |
